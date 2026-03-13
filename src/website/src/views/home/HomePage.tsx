@@ -6,17 +6,10 @@ import React, { lazy, Suspense, useRef } from 'react';
 import ReversibleContentSection from '@/components/sections/ReversibleContentSection';
 
 import AnalyticsContentSection from './AnalyticsContentSection';
-import AppDownloadSection from './AppDownloadSection';
-import FeaturedCarousel from './FeaturedCarousel';
 import HomePlayerSection from './HomePlayerSection';
 import StatisticsSection from './HomeStatsSection';
 
-// Lazy load heavy components
-const AirQualityBillboard = lazy(
-  () => import('@/components/sections/AirQualityBillboard'),
-);
-
-// Optimized animation variants - reduced duration and simpler animations
+// Optimized animation variants
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -27,13 +20,12 @@ const sectionVariants = {
 };
 
 const HomePage = () => {
-  // Helper to create a motion div that shows on scroll
   const MotionSection = ({ children }: { children: React.ReactNode }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, {
       once: true,
       margin: '0px 0px -100px 0px',
-      amount: 0.1, // Trigger when only 10% is visible
+      amount: 0.1,
     });
 
     return (
@@ -50,63 +42,52 @@ const HomePage = () => {
 
   return (
     <div className="space-y-20">
-      {/* Home Player Section */}
+      {/* Hero Section */}
       <HomePlayerSection />
 
-      {/* Statistics Section */}
+      {/* Statistics / Value Section */}
       <MotionSection>
         <StatisticsSection />
       </MotionSection>
 
-      {/* Air Quality Billboard */}
-      <MotionSection>
-        <Suspense
-          fallback={
-            <div className="h-96 animate-pulse bg-gray-100 rounded-lg" />
-          }
-        >
-          <AirQualityBillboard homepage className="px-2 md:px-3" />
-        </Suspense>
-      </MotionSection>
-
-      {/* Reversible Content Section 1 */}
+      {/* Smart Infrastructure Sensors */}
       <MotionSection>
         <ReversibleContentSection
-          title="Binos Air Quality Monitor – Built for African Cities"
-          subtitle="Air Quality Monitor"
-          description="Our Binos Air Quality Monitors are designed, manufactured, and calibrated specifically for African urban environments. Optimized to withstand extreme weather, high dust, and heat, these locally built monitors provide accurate, AI-calibrated air quality data. Easy to install on buildings or motorcycle taxis, they enable high-resolution, mobile monitoring to fill data gaps across cities. Powered by solar or mains electricity and operating on reliable 2G networks, Binos Monitors deliver actionable insights to support effective air quality management across Africa. "
+          title="Smart Infrastructure Sensors"
+          subtitle="IoT Sensor Hardware"
+          description="OctaSence deploys rugged industrial IoT sensors that capture strain, displacement, vibration, groundwater pressure, and environmental conditions. Built to withstand extreme environments across mines, tunnels, dams, and bridges — delivering continuous, reliable data streams."
           buttonText="Learn more"
-          buttonLink="/products/monitor"
-          imageUrl="https://res.cloudinary.com/dbibjvyhm/image/upload/v1757020397/website/photos/monitorHome_dmmrsk_tof2wo.webp"
+          buttonLink="/products/sensors"
+          imageUrl="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&q=80"
           reverse={false}
           backgroundColor="bg-transparent"
         />
       </MotionSection>
 
-      {/* Analytics Content Section */}
+      {/* AI Monitoring Platform */}
       <MotionSection>
         <AnalyticsContentSection
-          title="An interactive air quality analytics platform"
-          subtitle="Air Quality Analytics"
-          description="Access and visualise real-time and historical air quality information across Africa through our easy-to-use air quality analytics dashboard."
+          title="An intelligent infrastructure monitoring platform"
+          subtitle="AI Monitoring Platform"
+          description="Access and visualize real-time and historical structural health data across your infrastructure portfolio through our AI-powered analytics dashboard. Detect anomalies, forecast risks, and act before failures happen."
           buttonText="Learn more"
-          buttonLink="/products/analytics"
-          imageUrl="https://res.cloudinary.com/dbibjvyhm/image/upload/v1728175853/website/photos/analyticsHome_l3hgcy.png"
+          buttonLink="/products/platform"
+          imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
           backgroundColor="bg-[#EDF3FF]"
           subtitleColor="text-black"
           subtitleBgColor="bg-white"
         />
       </MotionSection>
 
-      {/* Reversible Content Section 2 */}
+      {/* Developer Data APIs */}
       <MotionSection>
         <ReversibleContentSection
-          title="Amplify air quality impact through our API"
-          subtitle="Air Quality API"
-          description="Are you a developer? We invite you to leverage our open-air quality data on your App"
-          buttonText="Get started here"
+          title="Build with OctaSence infrastructure data"
+          subtitle="Developer Data APIs"
+          description="Are you a developer or systems integrator? Leverage our open infrastructure monitoring APIs to embed real-time structural health data into your own applications and workflows."
+          buttonText="Get started"
           buttonLink="/products/api"
-          imageUrl="https://res.cloudinary.com/dbibjvyhm/image/upload/v1729071534/website/photos/wrapper_zpnvdw.png"
+          imageUrl="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80"
           reverse={false}
           backgroundColor="bg-transparent"
           leftWidth="lg:w-1/3"
@@ -114,74 +95,25 @@ const HomePage = () => {
         />
       </MotionSection>
 
-      {/* Network Coverage */}
+      {/* Network Coverage / Deployment Map */}
       <MotionSection>
         <ReversibleContentSection
-          title="Discover Our Network Coverage"
-          subtitle="Network Coverage"
+          title="Discover Our Deployment Coverage"
+          subtitle="Deployment Map"
           description={
             <div>
-              Explore the locations of our air quality monitoring stations
-              deployed across major cities and regions in Africa.
+              Explore the locations of our structural health monitoring systems
+              deployed across industrial sites, mining operations, and critical
+              infrastructure in Africa and beyond.
             </div>
           }
-          buttonText="View Network Coverage"
-          buttonLink="/solutions/network-coverage"
-          imageUrl="https://res.cloudinary.com/dbibjvyhm/image/upload/v1742912754/website/photos/Screenshot_2025-03-25_172412_amk2tl.png"
+          buttonText="View Deployments"
+          buttonLink="/solutions/deployments"
+          imageUrl="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
           backgroundColor="bg-transparent"
           reverse={true}
           imageClassName="object-cover rounded-xl"
         />
-      </MotionSection>
-
-      {/* The clean air Forum */}
-      <MotionSection>
-        <ReversibleContentSection
-          title="Africa Clean Air Forum 2026"
-          subtitle="Africa’s Premier Air Quality Community"
-          description={
-            <>
-              <div style={{ marginBottom: '1rem' }}>
-                The Africa Clean Air Forum is the flagship event of the Africa
-                Clean Air Network (AfriCAN). It serves as a platform to convene
-                policymakers, academia, industry, media and civil society
-                organisations to foster knowledge sharing, collaboration, and
-                cross-border partnerships to address air pollution across
-                Africa.
-              </div>
-              <div>
-                The Africa Clean Air Forum 2026 will convene experts at the
-                forefront of air quality science to explore how data, modelling,
-                monitoring technologies, and emerging tools can inform
-                decision-making and long-term investment across the continent.
-              </div>
-            </>
-          }
-          buttonText="Learn more"
-          buttonLink="https://cleanairafrica.org/events/annual-forum-2026-pretoria/"
-          imageUrl="https://res.cloudinary.com/dbibjvyhm/image/upload/v1772537998/website/photos/Clean-Air-Forum-Save-the-Date_1_xgtbul.png"
-          reverse={false}
-          backgroundColor="bg-[#EDF3FF]"
-          subtitleColor="text-black"
-          subtitleBgColor="bg-white"
-          imageClassName="object-cover object-center rounded-xl"
-        />
-      </MotionSection>
-
-      {/* App Download Section */}
-      <MotionSection>
-        <AppDownloadSection
-          title="Download the app"
-          description="Discover the quality of air you are breathing"
-          appStoreLink="https://apps.apple.com/ug/app/airqo-air-quality/id1337573091"
-          googlePlayLink="https://play.google.com/store/apps/details?id=com.airqo.app"
-          mockupImage="https://res.cloudinary.com/dbibjvyhm/image/upload/v1742911840/website/photos/OurProducts/MobileApp/Home___Light_mode_aw3ysg.png"
-        />
-      </MotionSection>
-
-      {/* Featured Carousel */}
-      <MotionSection>
-        <FeaturedCarousel />
       </MotionSection>
     </div>
   );

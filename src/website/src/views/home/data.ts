@@ -1,8 +1,4 @@
 /* eslint-disable simple-import-sort/imports */
-import Google from '@public/assets/images/partners/google.svg';
-import UN from '@public/assets/images/partners/UN.svg';
-import UsMission from '@public/assets/images/partners/usmissionuganda.svg';
-import WorldBank from '@public/assets/images/partners/worldbankgroup.svg';
 import {
   AqData,
   AqFile02,
@@ -13,85 +9,83 @@ import {
 } from '@airqo/icons-react';
 /* eslint-enable simple-import-sort/imports */
 
-export const partnerLogos = [
-  Google,
-  UsMission,
-  'http://res.cloudinary.com/dbibjvyhm/image/upload/v1757926788/website/uploads/partners/logos/CleanAirFund-Logo-ORANGE-CMYK_1_cabye7.png',
-  WorldBank,
-  UN,
-];
-
 export const accordionItems = {
-  cities: [
+  infrastructure: [
     {
-      title: 'High Resolution Network',
+      title: 'AI-Agent Monitoring',
       content:
-        'We want cleaner air in all African cities. We leverage our understanding of the African context.',
+        'Real-time sensor monitoring and anomaly detection across infrastructure assets. Our AI agents continuously analyze structural data streams to identify early warning signs.',
     },
     {
-      title: 'Digital air quality platforms',
+      title: 'IoT Sensor Networks',
       content:
-        'We empower decision-makers in African cities We increase access to air quality data evidence.',
+        'Rugged wireless sensors capturing strain, displacement, vibration, groundwater, and environmental signals across mines, tunnels, dams, and bridges.',
     },
     {
-      title: 'Policy engagement',
+      title: 'Infrastructure Digital Twin',
       content:
-        'We engage city authorities and government agencies We empower local leaders with air quality information.',
+        'Interactive 2D/3D dashboards visualizing infrastructure health and sensor data in real time. Engineers gain full situational awareness of every monitored asset.',
     },
   ],
-  communities: [
+  analytics: [
     {
-      title: 'AirQommunity Champions',
+      title: 'Predictive Failure Analytics',
       content:
-        'A growing network of individual change makers Championing local leaders and demand action.',
+        'Machine learning models detect structural risks before failures occur, reducing unplanned downtime and protecting lives across critical infrastructure.',
     },
     {
-      title: 'Free Access To Air Quality Information',
+      title: 'Hazard Detection & Alerts',
       content:
-        'We train individuals and communities Facilitating access to air quality information.',
+        'Automated alerts delivered via dashboard, SMS, or email when anomalies occur. Configurable thresholds ensure the right team is notified instantly.',
     },
     {
-      title: 'AirQo Hosts',
+      title: 'Engineering Reports',
       content:
-        'We engage locals host our deployment activities We involve locals in our maintenance drives.',
+        'Automated engineering-grade reports generated from sensor data, enabling compliance and informed decision-making for infrastructure operators.',
     },
   ],
 };
 
 export const statItems = [
   {
-    label: 'African Cities',
-    key: 'african_cities',
+    label: 'Industrial Sites Monitored',
+    key: 'industrial_sites',
+    value: 12,
     icon: AqGlobe05,
     color: '#145DFF',
   },
   {
-    label: 'Community Champions',
-    key: 'champions',
+    label: 'Pilot Deployments',
+    key: 'pilot_deployments',
+    value: 5,
     icon: AqStar06,
     color: '#10B981',
   },
   {
-    label: 'Monitor Installations',
-    key: 'deployed_monitors',
+    label: 'IoT Sensors Connected',
+    key: 'iot_sensors',
+    value: 340,
     icon: AqMonitor,
     color: '#F59E0B',
   },
   {
-    label: 'Data records',
-    key: 'data_records',
+    label: 'AI Risk Analyses',
+    key: 'ai_analyses',
+    value: 18000,
     icon: AqData,
     color: '#EF4444',
   },
   {
-    label: 'Research papers',
-    key: 'research_papers',
+    label: 'Engineering Reports',
+    key: 'engineering_reports',
+    value: 200,
     icon: AqFile02,
     color: '#8B5CF6',
   },
   {
     label: 'Partners',
     key: 'partners',
+    value: 8,
     icon: AqCoinsHand,
     color: '#06B6D4',
   },

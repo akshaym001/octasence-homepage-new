@@ -79,7 +79,7 @@ export default function CookieConsent() {
                   id="cookie-consent-description"
                   className="text-sm text-gray-600 leading-relaxed"
                 >
-                  AirQo uses cookies to improve your browsing experience and
+                  OctaSence uses cookies to improve your browsing experience and
                   perform analytics and research. By selecting &quot;Accept
                   All&quot;, you consent to our use of cookies on your device.{' '}
                   <Link

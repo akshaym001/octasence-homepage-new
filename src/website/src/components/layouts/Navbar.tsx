@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -8,12 +7,6 @@ import { TbChevronDown, TbMenu } from 'react-icons/tb';
 
 import { CustomButton } from '@/components/ui';
 import mainConfig from '@/configs/mainConfigs';
-import { useDispatch } from '@/hooks';
-import { openModal } from '@/store/slices/modalSlice';
-
-import { trackEvent } from '../GoogleAnalytics';
-import TopBanner from './TopBanner';
-// import NotificationBanner from './NotificationBanner';
 
 // Type definitions
 type MenuItem = {
@@ -26,101 +19,87 @@ type MenuItems = {
   [key: string]: MenuItem[];
 };
 
-// Data for menu items
+// OctaSence menu items
 const menuItems: MenuItems = {
-  Products: [
+  Platform: [
     {
-      title: 'Binos Monitor',
-      description: 'Built in Africa for African cities',
-      href: '/products/monitor',
+      title: 'Smart Infrastructure Sensors',
+      description: 'Industrial IoT sensors for structural health monitoring',
+      href: '/products/sensors',
     },
     {
-      title: 'Analytics Dashboard',
-      description: 'Air quality analytics for African cities',
-      href: '/products/analytics',
+      title: 'AI Monitoring Platform',
+      description: 'Real-time anomaly detection and predictive analytics',
+      href: '/products/platform',
     },
     {
-      title: 'Mobile App',
-      description: 'Discover the quality of air around you',
-      href: '/products/mobile-app',
-    },
-    {
-      title: 'Air Quality API',
-      description: 'Access raw and calibrated data',
+      title: 'Developer Data APIs',
+      description: 'Access raw and processed structural health data',
       href: '/products/api',
     },
     {
-      title: 'AirQalibrate',
-      description: 'Calibrate your low-cost sensor data',
-      href: '/products/calibrate',
+      title: 'Infrastructure Digital Twin',
+      description: '2D/3D dashboards for structural visualization',
+      href: '/products/digital-twin',
     },
   ],
   Solutions: [
     {
-      title: 'For African Cities',
-      description: 'Advancing air quality management in African Cities',
-      href: '/solutions/african-cities',
+      title: 'Mining Operations',
+      description: 'Geotechnical monitoring for mines and excavations',
+      href: '/solutions/mining',
     },
     {
-      title: 'For Communities',
-      description: 'Empowering communities with air quality information',
-      href: '/solutions/communities',
+      title: 'Tunnels & Bridges',
+      description: 'Structural health monitoring for tunnels and bridges',
+      href: '/solutions/tunnels',
     },
     {
-      title: 'For Research',
-      description: 'Advancing knowledge and evidence on air quality issues',
-      href: '/solutions/research',
+      title: 'Dams & Reservoirs',
+      description: 'Deformation and seepage monitoring for dams',
+      href: '/solutions/dams',
     },
     {
-      title: 'Kampala Air Quality Study',
-      description: 'Join our real-time air pollution research study',
-      href: '/solutions/kampala-study',
-    },
-    {
-      title: 'Network Coverage',
-      description: 'Explore our air quality monitoring network across Africa',
-      href: '/solutions/network-coverage',
+      title: 'Industrial IoT',
+      description: 'Continuous plant and machinery condition monitoring',
+      href: '/solutions/industrial',
     },
   ],
   About: [
-    { title: 'About Us', href: '/about-us' },
-    { title: 'Resources', href: '/resources' },
+    { title: 'About OctaSence', href: '/about-us' },
     { title: 'Careers', href: '/careers' },
     { title: 'Contact Us', href: '/contact' },
-    { title: 'Events', href: '/events' },
     { title: 'Press', href: '/press' },
-    { title: 'FAQs', href: '/faqs' },
-    { title: 'Africa Clean Air Forum', href: '/africa-clean-air-forum' },
   ],
   Developers: [
     {
-      title: 'Packages',
+      title: 'SDKs & Packages',
       description: 'Open source libraries and developer tools',
       href: '/packages',
     },
     {
       title: 'Documentation',
       description: 'API guides and technical resources',
-      href: 'https://docs.airqo.net/airqo-rest-api-documentation/',
+      href: 'https://docs.octasence.com',
     },
     {
       title: 'GitHub',
       description: 'Explore our open source projects',
-      href: 'https://github.com/airqo-platform',
+      href: 'https://github.com/octasence',
     },
   ],
 };
 
-// Helper component for rendering dropdown items with translation support
+// Helper component for rendering dropdown items
 const DropdownMenuContent: React.FC<{
   title: string;
   items: MenuItem[];
   className?: string;
 }> = ({ title, items, className = '' }) => (
   <div
-    className={`bg-white shadow-lg md:w-[400px] lg:w-[600px] text-sm rounded-md p-4 translate-element ${className}`}
+    className={`bg-white shadow-lg md:w-[400px] lg:w-[600px] text-sm rounded-md p-4 ${className}`}
   >
-    <div className="text-gray-400 mb-4 translate-element">{title}</div>
+    <div className="text-gray-400 mb-4">{title}</div>
     <div className="flex gap-8">
       {items
         .reduce<MenuItem[][]>((acc, item, idx) => {
@@ -140,29 +119,21 @@ const DropdownMenuContent: React.FC<{
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block p-2 rounded-xl hover:bg-blue-50 hover:text-blue-500 transition translate-element"
+                      className="block p-2 rounded-xl hover:bg-blue-50 hover:text-blue-500 transition"
                     >
-                      <div className="font-medium translate-element">
-                        {item.title}
-                      </div>
+                      <div className="font-medium">{item.title}</div>
                       {item.description && (
-                        <div className="text-gray-500 translate-element">
-                          {item.description}
-                        </div>
+                        <div className="text-gray-500">{item.description}</div>
                       )}
                     </a>
                   ) : (
                     <Link
                       href={item.href}
-                      className="block p-2 rounded-xl hover:bg-blue-50 hover:text-blue-500 transition translate-element"
+                      className="block p-2 rounded-xl hover:bg-blue-50 hover:text-blue-500 transition"
                     >
-                      <div className="font-medium translate-element">
-                        {item.title}
-                      </div>
+                      <div className="font-medium">{item.title}</div>
                       {item.description && (
-                        <div className="text-gray-500 translate-element">
-                          {item.description}
-                        </div>
+                        <div className="text-gray-500">{item.description}</div>
                       )}
                     </Link>
                   )}
@@ -176,7 +147,6 @@ const DropdownMenuContent: React.FC<{
 );
 
 const Navbar: React.FC = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
@@ -216,26 +186,16 @@ const Navbar: React.FC = () => {
         isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
-      {/* Top Banner */}
-      <TopBanner />
       <nav className="w-full bg-white p-4">
         <div
           className={`flex items-center justify-between ${mainConfig.containerClass}`}
         >
           {/* Logo Section */}
-          <Link
-            href={`${mainConfig.homePageUrl}`}
-            passHref
-            className="flex items-center"
-          >
-            <Image
-              src="https://res.cloudinary.com/dbibjvyhm/image/upload/v1728138368/website/Logos/logo_rus4my.png"
-              alt="AirQo"
-              width={71}
-              height={48}
-              className="h-10 w-auto cursor-pointer"
-              priority={true}
-            />
+          <Link href="/" passHref className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">O</span>
+            </div>
+            <span className="text-xl font-bold text-gray-900">OctaSence</span>
           </Link>
 
           {/* Mobile Menu Button */}
@@ -250,7 +210,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-6 items-center">
             {Object.entries(menuItems).map(([title, items]) => (
               <div key={title} className="relative group">
-                <button className="text-gray-800 font-medium hover:text-blue-600 text-sm transition-colors translate-element flex items-center">
+                <button className="text-gray-800 font-medium hover:text-blue-600 text-sm transition-colors flex items-center">
                   {title}
                   <TbChevronDown className="ml-1 h-4 w-4" />
                 </button>
@@ -261,33 +221,18 @@ const Navbar: React.FC = () => {
                 />
               </div>
             ))}
-            <CustomButton
-              onClick={() => {
-                trackEvent({
-                  action: 'button_click',
-                  category: 'engagement',
-                  label: 'get_involved',
-                });
-                dispatch(openModal());
-              }}
-              className="text-blue-600 bg-blue-50 transition rounded-none"
-            >
-              Get involved
-            </CustomButton>
-            <CustomButton
-              onClick={() => {
-                trackEvent({
-                  action: 'button_click',
-                  category: 'navigation',
-                  label: 'explore_data',
-                });
-                router.push('/explore-data');
-              }}
-              className="rounded-none"
-            >
-              Explore data
-            </CustomButton>
+            <Link href="/contact">
+              <CustomButton className="text-blue-600 bg-blue-50 transition rounded-none">
+                Request Demo
+              </CustomButton>
+            </Link>
+            <Link href="/products">
+              <CustomButton className="rounded-none">
+                Explore Platform
+              </CustomButton>
+            </Link>
           </div>
+
           {/* Mobile Navigation */}
           {menuOpen && (
             <div className="absolute top-full left-0 w-full bg-white shadow-lg p-4 md:hidden z-[9998]">
@@ -295,7 +240,7 @@ const Navbar: React.FC = () => {
                 <div key={title} className="mb-4">
                   <button
                     onClick={() => toggleExpandedMenu(title)}
-                    className="text-gray-800 font-medium w-full text-left flex items-center justify-between translate-element"
+                    className="text-gray-800 font-medium w-full text-left flex items-center justify-between"
                   >
                     {title}
                     <TbChevronDown
@@ -310,7 +255,7 @@ const Navbar: React.FC = () => {
                         key={item.href}
                         href={item.href}
                         onClick={handleLinkClick}
-                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition rounded translate-element"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 transition rounded"
                       >
                         {item.title}
                       </Link>
@@ -318,38 +263,19 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
               ))}
-              <CustomButton
-                onClick={() => {
-                  trackEvent({
-                    action: 'button_click',
-                    category: 'engagement',
-                    label: 'get_involved',
-                  });
-                  dispatch(openModal());
-                  handleLinkClick();
-                }}
-                className="w-full text-blue-600 bg-blue-50 hover:bg-blue-100 transition rounded-none mb-2"
-              >
-                Get involved
-              </CustomButton>
-              <CustomButton
-                onClick={() => {
-                  trackEvent({
-                    action: 'button_click',
-                    category: 'navigation',
-                    label: 'explore_data',
-                  });
-                  router.push('/explore-data');
-                  handleLinkClick();
-                }}
-                className="w-full rounded-none"
-              >
-                Explore data
-              </CustomButton>
+              <Link href="/contact" onClick={handleLinkClick}>
+                <CustomButton className="w-full text-blue-600 bg-blue-50 hover:bg-blue-100 transition rounded-none mb-2">
+                  Request Demo
+                </CustomButton>
+              </Link>
+              <Link href="/products" onClick={handleLinkClick}>
+                <CustomButton className="w-full rounded-none">
+                  Explore Platform
+                </CustomButton>
+              </Link>
             </div>
           )}
         </div>
-        {/* Removed clean-air-network tab navigation */}
       </nav>
     </div>
   );

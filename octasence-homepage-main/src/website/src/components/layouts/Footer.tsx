@@ -98,6 +98,11 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-4">Solutions</h3>
             <ul className="space-y-2">
               <li>
+                <Link href="/solutions-infrastructure-intelligence" className="text-gray-600 hover:underline">
+                  Infrastructure Intelligence
+                </Link>
+              </li>
+              <li>
                 <Link href="/solutions/mining" className="text-gray-600 hover:underline">
                   Mining
                 </Link>

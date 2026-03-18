@@ -115,8 +115,6 @@ const HeroSection: React.FC = () => {
           {/* Request Demo Button */}
           <Link href="/contact" className="group">
             <motion.button
-              onHoverStart={() => setIsHovered('demo')}
-              onHoverEnd={() => setIsHovered(null)}
               whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
               whileTap={{ scale: 0.98 }}
               className={cn(

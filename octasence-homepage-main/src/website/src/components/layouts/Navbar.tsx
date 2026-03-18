@@ -46,6 +46,11 @@ const menuItems: MenuItems = {
   ],
   Solutions: [
     {
+      title: 'Infrastructure Intelligence',
+      description: 'End-to-end SHM and Geotechnical Intelligence',
+      href: '/solutions-infrastructure-intelligence',
+    },
+    {
       title: 'Mining Operations',
       description: 'Geotechnical monitoring for mines and excavations',
       href: '/solutions/mining',
@@ -223,13 +228,16 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-8 items-center">
             {Object.entries(menuItems).map(([title, items]) => (
               <div key={title} className="relative group">
-                <button className={cn(
-                  "font-medium transition-colors text-base flex items-center",
-                  lastScrollY > 50 ? "text-gray-800 hover:text-blue-600" : "text-white/80 hover:text-white"
-                )}>
+                <Link 
+                  href={title === 'Solutions' ? '/solutions-infrastructure-intelligence' : '#'}
+                  className={cn(
+                    "font-medium transition-colors text-base flex items-center",
+                    lastScrollY > 50 ? "text-gray-800 hover:text-blue-600" : "text-white/80 hover:text-white"
+                  )}
+                >
                   {title}
                   <TbChevronDown className="ml-1 h-5 w-5" />
-                </button>
+                </Link>
                 <DropdownMenuContent
                   title={title}
                   items={items}

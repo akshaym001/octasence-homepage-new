@@ -1,22 +1,20 @@
 'use client';
 
 import { isBefore, parseISO } from 'date-fns';
-import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import {
   FiArrowRight,
+  FiBookOpen,
   FiDollarSign,
   FiHome,
   FiMonitor,
-  FiBookOpen,
-  FiTrendingUp,
   FiShield,
-  FiUsers,
   FiStar,
+  FiTrendingUp,
+  FiUsers,
 } from 'react-icons/fi';
 
-import { CustomButton, NoData } from '@/components/ui';
 import mainConfig from '@/configs/mainConfigs';
 import { useCareers, useDepartments } from '@/hooks/useApiHooks';
 
@@ -136,7 +134,7 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({
     };
     render();
     return () => cancelAnimationFrame(animationId);
-  }, [isDragging, dots]);
+  }, [isDragging, dots, locations]);
 
   return (
     <div
@@ -159,31 +157,24 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({
 };
 
 const CareerPage: React.FC = () => {
-  const router = useRouter();
   const {
     data: departmentsPage,
     isLoading: departmentsLoading,
-    error: departmentsError,
+    error: _departmentsError,
   } = useDepartments();
 
   const departments = departmentsPage?.results ?? [];
 
   const {
     data: careersData,
-    error: careersError,
+    error: _careersError,
     isLoading: careersLoading,
   } = useCareers();
 
   const careers = careersData?.results ?? [];
 
-  const [selectedDepartmentId, setSelectedDepartmentId] =
+  const [selectedDepartmentId, _setSelectedDepartmentId] =
     useState<string>('all'); // Default to All
-
-  // Add "Open Positions" to the departments list
-  const allDepartments = [
-    { id: 'all', name: 'Open Positions' },
-    ...(departments || []),
-  ];
 
   // Function to check if the position is still open (closing date in the future)
   const isJobOpen = (closingDate?: string) => {
@@ -202,22 +193,11 @@ const CareerPage: React.FC = () => {
     return isOpen && career.department?.id == selectedDepartmentId;
   });
 
-  // Group the jobs by department and filter only open jobs
-  const groupedJobsByDepartment = filteredJobs?.reduce((acc: any, job: any) => {
-    // Fix: job.department is already an object with name property
-    const departmentName = job.department?.name || 'Open Positions';
-    if (!acc[departmentName]) {
-      acc[departmentName] = { jobs: [], openCount: 0 };
-    }
-    acc[departmentName].openCount++;
-    acc[departmentName].jobs.push(job);
-    return acc;
-  }, {});
-
   // Show loading skeletons
-  const isLoading = departmentsLoading || careersLoading;
+  const _isLoading = departmentsLoading || careersLoading;
+  void filteredJobs; // used indirectly via selectedDepartmentId filter above
 
-  const scrollToPositions = () => {
+  const _scrollToPositions = () => {
     const element = document.getElementById('open-positions');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

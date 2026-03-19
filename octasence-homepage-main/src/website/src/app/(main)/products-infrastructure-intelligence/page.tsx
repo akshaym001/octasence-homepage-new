@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 
@@ -298,13 +299,12 @@ function GridModuleCard({
         className="relative w-full bg-[#0a0a14] overflow-hidden"
         style={{ aspectRatio: '16/9' }}
       >
-        <img
+        <Image
           src={mod.image}
           alt={mod.title}
-          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = 'none';
-          }}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
         />
         {/* Bottom fade into content area */}
         <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0a0a14] to-transparent" />
@@ -531,13 +531,12 @@ function HowImage({
           background: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
         }}
       />
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={900}
+        height={600}
         className="relative block w-full h-auto opacity-100 transition-transform duration-700 group-hover:scale-[1.01]"
-        onError={(e) => {
-          (e.target as HTMLImageElement).style.display = 'none';
-        }}
       />
       <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-500 via-indigo-400 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
     </motion.div>

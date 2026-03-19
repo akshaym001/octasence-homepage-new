@@ -122,12 +122,12 @@ const FeaturedCarousel = () => {
 
                 <div className="md:w-1/2 flex flex-col justify-center">
                   <div className="flex gap-3 mb-4">
-                    <span className="text-blue-600 bg-white rounded-full px-2 py-1 text-sm font-medium">
+                    <span className="text-blue-600 bg-white rounded-full px-2 py-1 text-sm">
                       {formatItemTags(item)}
                     </span>
                   </div>
 
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-6">
                     {item.title}
                   </h2>
 
@@ -135,7 +135,7 @@ const FeaturedCarousel = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 font-medium flex items-center group"
+                    className="text-blue-600 flex items-center group"
                   >
                     <span className="mr-2">
                       {item.link_title || 'Learn More'}
@@ -150,9 +150,7 @@ const FeaturedCarousel = () => {
           {/* Navigation Controls */}
           <div className="mt-8 flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="font-medium">
-                {String(currentIndex + 1).padStart(2, '0')}
-              </span>
+              <span>{String(currentIndex + 1).padStart(2, '0')}</span>
               <span className="text-gray-400">
                 / {String(allHighlights.length).padStart(2, '0')}
                 {hasMorePages && (

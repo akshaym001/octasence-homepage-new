@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { HiArrowRight } from 'react-icons/hi';
@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-black font-inter">
+    <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-black">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -60,7 +60,7 @@ const HeroSection: React.FC = () => {
       >
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.3] mb-6 tracking-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.55)]"
+          className="text-4xl md:text-6xl lg:text-7xl text-white leading-[1.2] mb-10 tracking-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.55)]"
         >
           Predict Infrastructure <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#97a9f6] to-[#5b6cf3]">
@@ -70,10 +70,10 @@ const HeroSection: React.FC = () => {
 
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
+          className="text-lg md:text-2xl text-white/75 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
         >
-          OctaSence combines AI agents, IoT sensors, and real-time digital twins to
-          monitor structural health across mines, tunnels, dams, and large
+          OctaSence combines AI agents, IoT sensors, and real-time digital twins
+          to monitor structural health across mines, tunnels, dams, and large
           infrastructure.
         </motion.p>
 
@@ -89,9 +89,9 @@ const HeroSection: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={cn(
-                "relative overflow-hidden px-10 py-4 rounded-full font-semibold text-white transition-all duration-300",
-                "bg-[#5b6cf3] shadow-[0_0_20px_rgba(91,108,243,0.3)]",
-                "hover:shadow-[0_0_30px_rgba(91,108,243,0.5)]"
+                'relative overflow-hidden px-10 py-4 rounded-full text-white transition-all duration-300',
+                'bg-[#5b6cf3] shadow-[0_0_20px_rgba(91,108,243,0.3)]',
+                'hover:shadow-[0_0_30px_rgba(91,108,243,0.5)]',
               )}
             >
               <div className="relative z-10 flex items-center gap-2">
@@ -106,7 +106,9 @@ const HeroSection: React.FC = () => {
               {/* Shine effect */}
               <motion.div
                 className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg]"
-                animate={isHovered === 'explore' ? { left: '100%' } : { left: '-100%' }}
+                animate={
+                  isHovered === 'explore' ? { left: '100%' } : { left: '-100%' }
+                }
                 transition={{ duration: 0.8 }}
               />
             </motion.button>
@@ -115,12 +117,15 @@ const HeroSection: React.FC = () => {
           {/* Request Demo Button */}
           <Link href="/contact" className="group">
             <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+              whileHover={{
+                scale: 1.02,
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }}
               whileTap={{ scale: 0.98 }}
               className={cn(
-                "relative px-10 py-4 rounded-full font-semibold text-white transition-all duration-300",
-                "border border-white/30 backdrop-blur-md",
-                "hover:border-white/60"
+                'relative px-10 py-4 rounded-full text-white transition-all duration-300',
+                'border border-white/30 backdrop-blur-md',
+                'hover:border-white/60',
               )}
             >
               <span className="relative z-10">Request Demo</span>
@@ -136,4 +141,3 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
-

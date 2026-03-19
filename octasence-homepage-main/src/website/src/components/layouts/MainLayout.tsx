@@ -1,4 +1,5 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import PageTransitionWrapper from '@/components/PageTransitionWrapper';
@@ -18,7 +19,14 @@ interface MainLayoutProps {
   noPaddingTop?: boolean;
 }
 
-const MainLayout = ({ children, topFullWidth, noPaddingTop }: MainLayoutProps) => {
+const MainLayout = ({
+  children,
+  topFullWidth,
+  noPaddingTop,
+}: MainLayoutProps) => {
+  const pathname = usePathname();
+  const showHighlight = pathname !== '/' && pathname !== '/home';
+
   return (
     <div className="octa-shell min-h-screen w-full flex flex-col overflow-x-hidden">
       <div className="octa-grid absolute inset-0 opacity-[0.08] pointer-events-none" />
@@ -27,17 +35,20 @@ const MainLayout = ({ children, topFullWidth, noPaddingTop }: MainLayoutProps) =
       <Navbar />
 
       {/* Main Content */}
-      <main className={cn('relative z-10 flex-1 pb-8', !noPaddingTop && 'pt-28')}>
+      <main
+        className={cn('relative z-10 flex-1 pb-8', !noPaddingTop && 'pt-28')}
+      >
         <PageTransitionWrapper>
           {/* Optional full-width area inserted before the centered container */}
           {topFullWidth}
 
           <div className="w-full text-white/88">{children}</div>
 
-          {/* Highlight Section */}
-          <section className="mt-32 mb-8">
-            <Highlight />
-          </section>
+          {showHighlight && (
+            <section className="mt-32 mb-8">
+              <Highlight />
+            </section>
+          )}
 
           {/* Action Buttons Section */}
           <section className="my-8">

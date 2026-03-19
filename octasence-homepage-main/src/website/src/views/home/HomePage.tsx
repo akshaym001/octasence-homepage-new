@@ -1,13 +1,14 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import React, { lazy, Suspense, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import ReversibleContentSection from '@/components/sections/ReversibleContentSection';
 
 import AnalyticsContentSection from './AnalyticsContentSection';
 import HomePlayerSection from './HomePlayerSection';
 import StatisticsSection from './HomeStatsSection';
+import PlatformShowcase from './PlatformShowcase';
 
 // Optimized animation variants
 const sectionVariants = {
@@ -41,7 +42,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full home-page">
       {/* Hero Section */}
       <HomePlayerSection />
 
@@ -51,6 +52,8 @@ const HomePage = () => {
         <MotionSection>
           <StatisticsSection />
         </MotionSection>
+
+        <PlatformShowcase />
 
         {/* Smart Infrastructure Sensors */}
         <MotionSection>
@@ -83,6 +86,9 @@ const HomePage = () => {
             backgroundColor="bg-[#EDF3FF]"
             subtitleColor="text-black"
             subtitleBgColor="bg-white"
+            titleClassName="text-[#08162C]"
+            descriptionClassName="text-[#31456F]"
+            linkClassName="text-[#0F47D7]"
           />
         </MotionSection>
 
@@ -97,13 +103,13 @@ const HomePage = () => {
             imageUrl="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80"
             reverse={false}
             backgroundColor="bg-transparent"
-            leftWidth="lg:w-1/3"
-            rightWidth="lg:w-2/3"
             subtitleColor="text-blue-100"
             subtitleBgColor="bg-white/10"
             titleClassName="text-white"
             descriptionClassName="text-white/80"
             linkClassName="text-blue-300"
+            leftWidth="lg:w-1/3"
+            rightWidth="lg:w-2/3"
           />
         </MotionSection>
 
@@ -114,9 +120,9 @@ const HomePage = () => {
             subtitle="Deployment Map"
             description={
               <div>
-                Explore the locations of our structural health monitoring systems
-                deployed across industrial sites, mining operations, and critical
-                infrastructure in Africa and beyond.
+                Explore the locations of our structural health monitoring
+                systems deployed across industrial sites, mining operations, and
+                critical infrastructure in Africa and beyond.
               </div>
             }
             buttonText="View Deployments"
@@ -124,15 +130,24 @@ const HomePage = () => {
             imageUrl="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80"
             backgroundColor="bg-transparent"
             reverse={true}
-            imageClassName="object-cover rounded-xl"
             subtitleColor="text-blue-100"
             subtitleBgColor="bg-white/10"
             titleClassName="text-white"
             descriptionClassName="text-white/80"
             linkClassName="text-blue-300"
+            imageClassName="object-cover rounded-xl"
           />
         </MotionSection>
       </div>
+
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+        .home-page,
+        .home-page * {
+          font-family: 'Outfit', sans-serif;
+        }
+      `}</style>
     </div>
   );
 };

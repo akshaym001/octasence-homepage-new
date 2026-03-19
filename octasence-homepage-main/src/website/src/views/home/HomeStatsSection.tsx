@@ -1,119 +1,215 @@
 'use client';
 
+import { AnimatePresence, motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import type React from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { CustomButton } from '@/components/ui';
 import mainConfig from '@/configs/mainConfigs';
 
 import { Accordion } from './Accordion';
 import { accordionItems, statItems } from './data';
 
+type TabKey = 'infrastructure' | 'analytics';
+
+const imageContent: Record<
+  TabKey,
+  {
+    src: string;
+    alt: string;
+    eyebrow: string;
+    title: string;
+    blurb: string;
+    stats: string[];
+  }
+> = {
+  infrastructure: {
+    src: '/assets/images/shm.jpg',
+    alt: 'Structural Health Monitoring',
+    eyebrow: 'Live Infrastructure View',
+    title: 'Sensor-rich field intelligence',
+    blurb:
+      'Continuous streams from mines, tunnels, and dams turned into one command-ready visual layer.',
+    stats: ['24/7 sensing', 'Remote sites', 'Early-warning ready'],
+  },
+  analytics: {
+    src: '/assets/images/predictive.avif',
+    alt: 'AI Predictive Analytics',
+    eyebrow: 'AI Risk Forecasting',
+    title: 'Prediction before disruption',
+    blurb:
+      'Machine learning surfaces hidden structural patterns before they escalate into operational risk.',
+    stats: ['Trend detection', 'Risk scoring', 'Actionable alerts'],
+  },
+};
+
 const HomeStatsSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'infrastructure' | 'analytics'>(
-    'infrastructure',
-  );
+  const [activeTab, setActiveTab] = useState<TabKey>('infrastructure');
 
   return (
-    <section className="py-8 px-4 w-full space-y-20 bg-[#ECF2FF]">
-      <div className={`${mainConfig.containerClass} space-y-16`}>
-        {/* Trusted by section */}
-        <div className="text-center space-y-4">
-          <h3 className="text-sm font-semibold text-[#31456F] uppercase tracking-widest">
-            TRUSTED BY INDUSTRY LEADERS
-          </h3>
-          <div className="flex flex-wrap justify-center gap-8 items-center">
-            {['Mining Corp', 'InfraGroup', 'SafeBuild', 'GeoTech', 'IotWorks'].map(
-              (name) => (
-                <span
-                  key={name}
-                  className="text-[#41557F] font-semibold text-lg opacity-90"
-                >
-                  {name}
-                </span>
-              ),
-            )}
-          </div>
-        </div>
+    <section className="relative w-full overflow-hidden bg-[#ECF2FF] px-4 py-10 md:py-14">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-[-8%] top-20 h-44 w-44 rounded-full bg-blue-300/20 blur-3xl" />
+        <div className="absolute right-[-4%] top-1/3 h-52 w-52 rounded-full bg-cyan-300/20 blur-3xl" />
+        <div
+          className="absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+      </div>
 
+      <div className={`${mainConfig.containerClass} relative z-10 space-y-14`}>
         <HeadingSection activeTab={activeTab} setActiveTab={setActiveTab} />
         <AccordionAndImageSection activeTab={activeTab} />
+        <StatisticsSection />
       </div>
-      <StatisticsSection />
     </section>
   );
 };
 
 const HeadingSection: React.FC<{
-  activeTab: 'infrastructure' | 'analytics';
-  setActiveTab: (tab: 'infrastructure' | 'analytics') => void;
-}> = ({ activeTab, setActiveTab }) => (
-  <div className="text-center space-y-6 max-w-5xl mx-auto bg-white/80 rounded-[2rem] px-6 py-10 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-    <h2
-      className="text-3xl lg:text-5xl font-black tracking-tight"
-      style={{ color: '#08162C' }}
+  activeTab: TabKey;
+  setActiveTab: (tab: TabKey) => void;
+}> = ({ activeTab, setActiveTab }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="mx-auto max-w-5xl rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(240,246,255,0.96)_100%)] px-6 py-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.08)] md:px-10 md:py-12"
+      style={{ fontFamily: 'Outfit, sans-serif' }}
     >
-      Real-Time Infrastructure <br /> Intelligence
-    </h2>
-    <p className="text-lg max-w-3xl mx-auto" style={{ color: '#31456F' }}>
-      OctaSence delivers continuous structural awareness by combining industrial
-      IoT sensors, AI-driven analytics, and digital twin visualization.
-    </p>
-    <div className="flex justify-center items-center gap-0 relative">
-      <CustomButton
-        onClick={() => setActiveTab('infrastructure')}
-        className={`px-6 py-3 ${
-          activeTab === 'infrastructure'
-            ? 'bg-[#2E3A59] text-white z-10 scale-105 rounded-xl'
-            : 'bg-[#DFE8F9] text-[#2E3A59] -ml-1 rounded-l-xl'
-        } border border-[#DFE8F9]`}
-      >
-        Infrastructure Monitoring
-      </CustomButton>
-      <CustomButton
-        onClick={() => setActiveTab('analytics')}
-        className={`px-6 py-3 ${
-          activeTab === 'analytics'
-            ? 'bg-[#2E3A59] text-white z-10 scale-105 rounded-xl'
-            : 'bg-[#DFE8F9] text-[#2E3A59] -ml-1 rounded-r-xl'
-        } border border-[#DFE8F9]`}
-      >
-        Predictive Analytics
-      </CustomButton>
-    </div>
-  </div>
-);
+      <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-[11px] uppercase tracking-[0.24em] text-[#45638E]">
+        <motion.span
+          className="h-2 w-2 rounded-full bg-[#0F47D7]"
+          animate={{ opacity: [0.35, 1, 0.35], scale: [0.95, 1.15, 0.95] }}
+          transition={{ duration: 2.2, repeat: Infinity }}
+        />
+        Real-time Command Layer
+      </div>
+
+      <h2 className="text-3xl leading-[1.05] tracking-[-0.03em] text-[#08162C] md:text-5xl">
+        Real-Time Infrastructure <br className="hidden md:block" /> Intelligence
+      </h2>
+
+      <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#45638E] md:text-lg">
+        OctaSence blends industrial IoT sensing, AI-led interpretation, and
+        digital twin context into one responsive monitoring experience built for
+        high-risk infrastructure.
+      </p>
+
+      <div className="mt-8 flex justify-center">
+        <div className="relative inline-grid w-full max-w-2xl grid-cols-2 border-b border-[#C9D9F2]">
+          <motion.div
+            layout
+            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+            className={`absolute bottom-0 h-[3px] bg-[#0F47D7] ${
+              activeTab === 'infrastructure' ? 'left-0 w-1/2' : 'left-1/2 w-1/2'
+            }`}
+          />
+          <button
+            onClick={() => setActiveTab('infrastructure')}
+            className={`relative px-4 py-4 text-sm transition-colors md:px-6 md:text-base ${
+              activeTab === 'infrastructure'
+                ? 'text-[#08162C]'
+                : 'text-[#587193]'
+            }`}
+            style={{ fontFamily: 'Outfit, sans-serif' }}
+            type="button"
+          >
+            Infrastructure Monitoring
+          </button>
+          <button
+            onClick={() => setActiveTab('analytics')}
+            className={`relative px-4 py-4 text-sm transition-colors md:px-6 md:text-base ${
+              activeTab === 'analytics' ? 'text-[#08162C]' : 'text-[#587193]'
+            }`}
+            style={{ fontFamily: 'Outfit, sans-serif' }}
+            type="button"
+          >
+            Predictive Analytics
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const AccordionAndImageSection: React.FC<{
-  activeTab: 'infrastructure' | 'analytics';
-}> = ({ activeTab }) => (
-  <div className="flex flex-col lg:flex-row gap-8 items-start justify-between">
-    <div className="lg:w-1/2 w-full">
-      <Accordion items={accordionItems[activeTab]} />
+  activeTab: TabKey;
+}> = ({ activeTab }) => {
+  const content = imageContent[activeTab];
+
+  return (
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
+      <motion.div
+        key={`accordion-${activeTab}`}
+        initial={{ opacity: 0, x: -18 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-[1.75rem] border border-white/75 bg-white/85 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.07)] backdrop-blur-sm md:p-5"
+      >
+        <Accordion items={accordionItems[activeTab]} />
+      </motion.div>
+
+      <motion.div
+        layout
+        className="relative min-h-[340px] overflow-hidden border border-[#B8C8E8] bg-[#0F1C33] shadow-[0_28px_55px_rgba(15,23,42,0.2)]"
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={content.src}
+              alt={content.alt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 55vw, 100vw"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,11,24,0.08)_0%,rgba(3,11,24,0.28)_42%,rgba(3,11,24,0.8)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
+              <div className="max-w-xl space-y-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-sm">
+                  <span className="h-2 w-2 rounded-full bg-cyan-300" />
+                  {content.eyebrow}
+                </div>
+                <h3 className="text-2xl leading-tight tracking-[-0.02em] text-white md:text-[2rem]">
+                  {content.title}
+                </h3>
+                <p className="max-w-lg text-sm leading-relaxed text-white/78 md:text-base">
+                  {content.blurb}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {content.stats.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/15 bg-black/20 px-3 py-1 text-xs text-white/82 backdrop-blur-sm"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
     </div>
-    <div className="lg:w-1/2 w-full rounded-lg">
-      <div className="relative w-full h-[400px] overflow-hidden bg-gradient-to-br from-[#1a2744] to-[#2E3A59] rounded-xl flex items-center justify-center">
-        {activeTab === 'infrastructure' ? (
-          <div className="text-center text-white space-y-3 px-8">
-            <div className="text-5xl mb-4">🔩</div>
-            <p className="text-xl font-semibold">Structural Health Monitoring</p>
-            <p className="text-sm text-blue-100 opacity-95">
-              Real-time sensor data across mines, tunnels, and dams
-            </p>
-          </div>
-        ) : (
-          <div className="text-center text-white space-y-3 px-8">
-            <div className="text-5xl mb-4">📊</div>
-            <p className="text-xl font-semibold">AI Predictive Analytics</p>
-            <p className="text-sm text-blue-100 opacity-95">
-              Machine learning models detecting structural risks early
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 const StatisticsSection: React.FC = () => {
   const formatStatValue = (value: number, key: string): string => {
@@ -121,32 +217,60 @@ const StatisticsSection: React.FC = () => {
     return `${value}+`;
   };
 
+  const scrollingStats = [...statItems, ...statItems];
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-      {statItems.map((stat, index) => {
-        const IconComponent = stat.icon;
-        return (
-          <div
-            key={index}
-            className="h-[240px] p-6 bg-[#DFE8F9] rounded-lg flex flex-col justify-between items-start space-y-4"
-          >
-            <div className="text-left flex flex-col items-start">
-              <p className="text-3xl font-bold">
-                {formatStatValue(stat.value, stat.key)}
-              </p>
-              <p className="text-[#425778]">{stat.label}</p>
-            </div>
-            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full">
-              <IconComponent
-                size={20}
-                color={stat.color}
-                className=""
-                aria-label={stat.label}
-              />
-            </div>
-          </div>
-        );
-      })}
+    <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden px-4 md:px-6">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#ECF2FF] to-transparent md:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#ECF2FF] to-transparent md:w-24" />
+
+      <motion.div
+        className="flex w-max gap-4"
+        animate={{ x: ['0%', '-50%'] }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      >
+        {scrollingStats.map((stat, index) => {
+          const IconComponent = stat.icon;
+
+          return (
+            <motion.div
+              key={`${stat.key}-${index}`}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="group flex min-h-[200px] w-[220px] flex-shrink-0 flex-col justify-between border border-white/80 bg-white/75 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white sm:w-[240px] lg:w-[260px]"
+            >
+              <div className="space-y-3">
+                <div
+                  className="h-1.5 w-14 rounded-full opacity-80"
+                  style={{ backgroundColor: stat.color }}
+                />
+                <div className="space-y-2">
+                  <p className="text-3xl tracking-[-0.03em] text-[#0B1D38]">
+                    {formatStatValue(stat.value, stat.key)}
+                  </p>
+                  <p className="text-sm leading-snug text-[#587193]">
+                    {stat.label}
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-110"
+                style={{ color: stat.color }}
+              >
+                <IconComponent
+                  size={20}
+                  color={stat.color}
+                  aria-label={stat.label}
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </div>
   );
 };

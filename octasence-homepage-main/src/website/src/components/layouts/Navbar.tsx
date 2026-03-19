@@ -43,16 +43,10 @@ const navItems: NavItem[] = [
   },
 ];
 
-function Dropdown({
-  label,
-  items,
-}: {
-  label: string;
-  items: DropdownItem[];
-}) {
+function Dropdown({ label, items }: { label: string; items: DropdownItem[] }) {
   return (
     <div className="relative group">
-      <div className="flex items-center cursor-pointer font-semibold transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white">
+      <div className="flex items-center cursor-pointer transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white">
         {label} <TbChevronDown className="ml-1" />
       </div>
 
@@ -64,7 +58,7 @@ function Dropdown({
               href={item.href}
               className="block p-3 rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
             >
-              <div className="font-semibold">{item.title}</div>
+              <div>{item.title}</div>
               {item.description && (
                 <div className="text-sm text-white/45">{item.description}</div>
               )}
@@ -122,7 +116,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="font-semibold transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white"
+                  className="transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -170,7 +164,7 @@ export default function Navbar() {
 
               return (
                 <div key={item.label} className="mb-3">
-                  <div className="font-semibold text-white">{item.label}</div>
+                  <div className="text-white">{item.label}</div>
                   {item.items.map((sub) => (
                     <Link
                       key={sub.href}

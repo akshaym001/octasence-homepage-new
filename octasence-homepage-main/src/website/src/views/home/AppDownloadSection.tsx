@@ -26,7 +26,7 @@ const AppDownloadSection: React.FC<AppDownloadSectionProps> = ({
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-24">
           {/* Left Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 lg:w-1/2">
-            <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-blue-600">
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] text-blue-600">
               {title}
             </h2>
             <p className="text-base sm:text-[20px] text-blue-600 max-w-md">

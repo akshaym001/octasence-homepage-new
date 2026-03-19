@@ -73,11 +73,14 @@ const NewsLetter: React.FC = () => {
       <div
         className={`${mainConfig.containerClass} octa-card relative overflow-hidden px-6 py-12 md:px-10 md:py-16`}
       >
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{
-          backgroundImage:
-            'radial-gradient(circle, rgba(96,165,250,0.8) 1px, transparent 1px)',
-          backgroundSize: '34px 34px',
-        }} />
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle, rgba(96,165,250,0.8) 1px, transparent 1px)',
+            backgroundSize: '34px 34px',
+          }}
+        />
         <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col items-center justify-center gap-12">
@@ -89,8 +92,8 @@ const NewsLetter: React.FC = () => {
                   Stay Connected
                 </div>
                 <h2 className="octa-heading text-3xl md:text-5xl">
-                  Subscribe to the <span className="octa-accent-text">OctaSence</span>{' '}
-                  newsletter
+                  Subscribe to the{' '}
+                  <span className="octa-accent-text">OctaSence</span> newsletter
                 </h2>
                 <p className="octa-lead text-lg">
                   Get product updates, deployment stories, research notes, and

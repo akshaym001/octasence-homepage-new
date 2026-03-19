@@ -25,7 +25,14 @@ const OctaSenceLogo: React.FC<{ size?: number; className?: string }> = ({
     className={className}
   >
     <defs>
-      <linearGradient id="octa-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="octa-grad"
+        x1="0"
+        y1="0"
+        x2="100"
+        y2="100"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop offset="0%" stopColor="#38bdf8" />
         <stop offset="100%" stopColor="#2563eb" />
       </linearGradient>
@@ -39,13 +46,28 @@ const OctaSenceLogo: React.FC<{ size?: number; className?: string }> = ({
       const y2 = 50 + 44 * Math.sin(rad);
       return (
         <g key={i}>
-          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="url(#octa-grad)" strokeWidth="5" strokeLinecap="round" />
+          <line
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="url(#octa-grad)"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
           <circle cx={x2} cy={y2} r="5" fill="url(#octa-grad)" />
         </g>
       );
     })}
     {/* Inner ring */}
-    <circle cx="50" cy="50" r="26" stroke="url(#octa-grad)" strokeWidth="5" fill="none" />
+    <circle
+      cx="50"
+      cy="50"
+      r="26"
+      stroke="url(#octa-grad)"
+      strokeWidth="5"
+      fill="none"
+    />
     {/* Center dot */}
     <circle cx="50" cy="50" r="8" fill="url(#octa-grad)" />
   </svg>
@@ -70,25 +92,63 @@ const TypingDots: React.FC = () => (
 
 // ─── Icon helpers ─────────────────────────────────────────────────────────────
 const ExpandIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-3.5 h-3.5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"
+    />
   </svg>
 );
 
 const CollapseIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 9H4m5 0V4M15 9h5m-5 0V4M9 15H4m5 0v5M15 15h5m-5 0v5" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-3.5 h-3.5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 9H4m5 0V4M15 9h5m-5 0V4M9 15H4m5 0v5M15 15h5m-5 0v5"
+    />
   </svg>
 );
 
 const CloseIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-4 h-4"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
 const SendIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-4 h-4 text-white"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
     <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
   </svg>
 );
@@ -159,7 +219,6 @@ const ChatbotWidget: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-[99999] flex flex-col items-end gap-3">
-
       {/* ── Chat Window ── */}
       <AnimatePresence>
         {isOpen && (
@@ -174,7 +233,6 @@ const ChatbotWidget: React.FC = () => {
           >
             {/* ── Header ── */}
             <div className="bg-gradient-to-r from-[#5b6cf3] to-[#7c3aed] px-4 pt-3 pb-3 flex-shrink-0">
-
               {/* Row 1: Close button pinned top-right */}
               <div className="flex justify-end mb-1">
                 <button
@@ -249,10 +307,11 @@ const ChatbotWidget: React.FC = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${msg.role === 'user'
+                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${
+                      msg.role === 'user'
                         ? 'bg-[#5b6cf3] text-white rounded-br-sm'
                         : 'bg-white text-gray-800 rounded-bl-sm'
-                      }`}
+                    }`}
                     style={{ fontSize }}
                   >
                     {msg.text}
@@ -312,8 +371,9 @@ const ChatbotWidget: React.FC = () => {
 
         {/* Green / grey status dot */}
         <span
-          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${isOpen ? 'bg-green-400' : 'bg-gray-400'
-            }`}
+          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${
+            isOpen ? 'bg-green-400' : 'bg-gray-400'
+          }`}
         />
       </motion.button>
     </div>

@@ -181,30 +181,61 @@ const ChatbotWidget: React.FC = () => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 300);
   }, [isOpen]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputValue.trim()) return;
+
+    const userText = inputValue;
     const userMsg: Message = {
       id: Date.now().toString(),
       role: 'user',
-      text: inputValue,
+      text: userText,
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, userMsg]);
     setInputValue('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      // Call our secure server-side proxy — the API key never touches the browser.
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userText }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      const outputText: string =
+        data?.reply ??
+        "I'm sorry, I couldn't generate a response. Please try again.";
+
       setMessages((prev) => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
           role: 'bot',
-          text: "Thank you for reaching out! Our team is here to help you with OctaSence's infrastructure monitoring platform. A specialist will respond shortly.",
+          text: String(outputText),
           timestamp: new Date(),
         },
       ]);
+    } catch (err) {
+      console.error('OctaSence chatbot error:', err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          role: 'bot',
+          text: "I'm having trouble connecting right now. Please try again in a moment or reach out to our support team at support@octasence.com.",
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
       setIsLoading(false);
-    }, 1800);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

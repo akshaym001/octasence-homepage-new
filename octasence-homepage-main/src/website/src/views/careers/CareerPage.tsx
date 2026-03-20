@@ -516,50 +516,6 @@ const CareerPage: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Scrolling Images Row */}
-        <div className="w-full overflow-hidden pb-16 md:pb-24">
-          <motion.div
-            className="flex gap-4 md:gap-8 group"
-            animate={{
-              x: [0, '-50%'],
-            }}
-            transition={{
-              duration: 50,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-            style={{ width: 'max-content' }}
-          >
-            {[
-              '/assets/images/predictive.avif',
-              '/assets/images/shm.jpg',
-              '/assets/images/products-twin.avif',
-              '/assets/images/new.avif',
-              'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800',
-              '/assets/images/products-dashboard.avif',
-              '/assets/images/products-audit.avif',
-              '/assets/images/predictive.avif',
-              '/assets/images/shm.jpg',
-              '/assets/images/products-twin.avif',
-              '/assets/images/new.avif',
-              'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=800',
-              '/assets/images/products-dashboard.avif',
-              '/assets/images/products-audit.avif',
-            ].map((src, i) => (
-              <div
-                key={i}
-                className="w-[280px] h-[180px] md:w-[450px] md:h-[300px] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-white/10 hover:border-indigo-500/50 transition-all duration-500 flex-shrink-0"
-              >
-                <img
-                  src={src}
-                  alt={`Innovation ${i}`}
-                  className="w-full h-full object-cover transition-all duration-700 scale-100 hover:scale-105"
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
       </div>
     </div>
   );

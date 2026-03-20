@@ -110,17 +110,12 @@ const Icons: Record<string, React.ReactNode> = {
 // ─── Sector Data ──────────────────────────────────────────────────────────────
 
 const sectors: Sector[] = [
-  { label: 'Bridges',      tag: 'Infrastructure', desc: 'Real-time monitoring of bridge decks, cables, and bearings — detecting fatigue and anomalies before failure.',                                              icon: Icons.bridges,     dot: '#378ADD', cases: [], sectorFilter: 'All' },
-  { label: 'Buildings',    tag: 'Urban',           desc: 'Tilt, settlement, vibration, and crack monitoring for commercial towers, residential blocks, and heritage structures.',                                    icon: Icons.buildings,   dot: '#7F77DD', cases: [], sectorFilter: 'All' },
   { label: 'Dams',         tag: 'Water',           desc: 'Seepage, pore pressure, and deformation monitoring for dam safety, maintenance, and regulatory compliance.',                                              icon: Icons.dams,        dot: '#378ADD', cases: [{ n: '03', t: 'Tailings dam failure risk monitoring', id: 'tailings-dam-failure' }, { n: '09', t: 'Aging dam structural health monitoring', id: 'aging-dam-shm' }], sectorFilter: 'Dams' },
   { label: 'Tunnels',      tag: 'Underground',     desc: 'Deformation and convergence tracking during TBM and drill & blast construction phases — delivering real-time risk alerts.',                               icon: Icons.tunnels,     dot: '#7F77DD', cases: [{ n: '04', t: 'Metro tunnel structural health monitoring', id: 'metro-tunnel-shm' }, { n: '08', t: 'TBM tunnel construction risk monitoring', id: 'tbm-tunnel-construction' }], sectorFilter: 'Tunnels' },
-  { label: 'Energy',       tag: 'Infrastructure',  desc: 'Structural monitoring for wind, nuclear, offshore, and solar energy projects with targeted data analysis.',                                               icon: Icons.energy,      dot: '#EF9F27', cases: [], sectorFilter: 'All' },
   { label: 'Mining',       tag: 'Extraction',      desc: 'Mine and tailings dam geotechnical monitoring with intelligent structural and ground movement data insights.',                                            icon: Icons.mining,      dot: '#EF9F27', cases: [{ n: '01', t: 'Open-pit mine slope failure prevention', id: 'open-pit-mine-slope' }, { n: '02', t: 'Underground mine roof collapse prediction', id: 'underground-mine-roof' }, { n: '10', t: 'Digital twin for integrated mine-to-port infrastructure', id: 'digital-twin-mine-to-port' }], sectorFilter: 'Mining' },
   { label: 'Landslides',   tag: 'Geohazard',       desc: 'Predictive early warning using GNSS, inclinometers, and piezometers delivering continuous slope stability data for timely action.',                       icon: Icons.landslides,  dot: '#D85A30', cases: [{ n: '06', t: 'Landslide risk monitoring for pipeline corridors', id: 'landslide-pipeline-corridors' }], sectorFilter: 'Oil & Gas' },
   { label: 'Pipelines',    tag: 'Energy',          desc: 'Oil, water, and gas transmission monitoring for streamlined pipeline efficiency, leak detection, and safety.',                                            icon: Icons.pipelines,   dot: '#5DCAA5', cases: [{ n: '05', t: 'Oil & gas pipeline leak detection', id: 'pipeline-leak-detection' }, { n: '06', t: 'Landslide risk monitoring for pipeline corridors', id: 'landslide-pipeline-corridors' }], sectorFilter: 'Oil & Gas' },
-  { label: 'Environment',  tag: 'Sustainability',  desc: 'Remote sensing and climate data for environmental management, sustainability reporting, and compliance monitoring.',                                       icon: Icons.environment, dot: '#5DCAA5', cases: [], sectorFilter: 'All' },
-  { label: 'Smart Cities', tag: 'Urban',           desc: 'Integrated urban data analytics across all infrastructure assets from utilities and transit to civic structures.',                                        icon: Icons.smartCities, dot: '#7F77DD', cases: [], sectorFilter: 'All' },
-];
+  ];
 
 // ─── Background Strobe Canvas ─────────────────────────────────────────────────
 
@@ -346,7 +341,7 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
           {highlightIdx !== null ? sectors[highlightIdx].label : 'SHM Platform'}
         </p>
         <p className="text-[11px] text-white/50 mt-1">
-          {highlightIdx !== null ? sectors[highlightIdx].tag : '11 sectors'}
+          {highlightIdx !== null ? sectors[highlightIdx].tag : '5 sectors'}
         </p>
       </div>
 
@@ -427,7 +422,7 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ sector }) => (
               <p className="text-[10px] font-medium tracking-widest uppercase text-white/40 mb-1">
                 {sector.tag}
               </p>
-              <h3 className="font-semibold text-xl text-white leading-tight mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>
+              <h3 className="font-semibold text-xl text-white leading-tight mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 {sector.label}
               </h3>
               <p className="text-sm text-white/60 leading-relaxed">
@@ -564,7 +559,7 @@ export default function SectorsPage() {
       <main className="relative">
 
         {/* ── Hero ── */}
-        <section className="relative pt-40 pb-24 md:pt-56 md:pb-40 text-center overflow-hidden">
+        <section className="relative pt-28 pb-24 md:pt-36 md:pb-40 text-center overflow-hidden">
           <FlowingWave />
           <HeroSparks />
 
@@ -586,7 +581,7 @@ export default function SectorsPage() {
 
               <h1
                 className="text-5xl md:text-7xl font-extrabold leading-[1.05] tracking-tight mb-6"
-                style={{ fontFamily: 'Syne, sans-serif' }}
+                style={{ fontFamily: 'Outfit, sans-serif' }}
               >
                 <span className="text-white">Intelligence for</span>
                 <br />
@@ -630,7 +625,7 @@ export default function SectorsPage() {
                 className="flex items-center justify-center gap-10 mt-16 flex-wrap"
               >
                 {[
-                  { num: '11',  label: 'Sectors covered' },
+                  { num: '5',  label: 'Sectors covered' },
                   { num: '10',  label: 'Case studies' },
                   { num: '24/7', label: 'Live monitoring' },
                   { num: '<1s', label: 'Alert latency' },
@@ -640,7 +635,7 @@ export default function SectorsPage() {
                     <div className="text-center">
                       <div
                         className="text-3xl font-bold text-white tracking-tight"
-                        style={{ fontFamily: 'Syne, sans-serif' }}
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
                       >
                         {s.num}
                       </div>
@@ -681,7 +676,7 @@ export default function SectorsPage() {
                 </div>
                 <h2
                   className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-3 text-white"
-                  style={{ fontFamily: 'Syne, sans-serif' }}
+                  style={{ fontFamily: 'Outfit, sans-serif' }}
                 >
                   Tailored for every sector
                 </h2>
@@ -691,15 +686,21 @@ export default function SectorsPage() {
                 </p>
               </div>
 
-              {/* Orbit wheel */}
-              <OrbitWheel
-                activeIdx={activeIdx}
-                hoveredIdx={hoveredIdx}
-                onHover={handleHover}
-                onClick={handleClick}
-                onNavigate={handleNavigate}
-              />
-              <PreviewPanel sector={displaySector} />
+              {/* Orbit wheel + Preview panel side by side */}
+              <div className="flex items-center gap-12 min-h-[580px]">
+                <div className="flex-shrink-0">
+                  <OrbitWheel
+                    activeIdx={activeIdx}
+                    hoveredIdx={hoveredIdx}
+                    onHover={handleHover}
+                    onClick={handleClick}
+                    onNavigate={handleNavigate}
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <PreviewPanel sector={displaySector} />
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -709,13 +710,30 @@ export default function SectorsPage() {
       <Footer />
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+        body {
+          font-family: 'Outfit', sans-serif;
+          font-weight: 400;
+        }
+
+        h1, h2, h3 {
+          font-weight: 500; /* slight emphasis, not bold */
+        }
+
+        * {
+          font-weight: 400 !important;
+        }
 
         @keyframes pulse-ring {
           0%   { transform: translate(-50%,-50%) scale(0.88); opacity: 0.35; }
           100% { transform: translate(-50%,-50%) scale(1.06); opacity: 0; }
         }
+        
       `}</style>
     </div>
   );
+
+  
 }
+

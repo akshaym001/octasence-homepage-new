@@ -557,7 +557,7 @@ export default function CaseStudyDetail({ cs }: { cs: CaseStudy }) {
                   display: "block",
                   background: "var(--accent-blue)",
                   color: "#020617",
-                  fontWeight: 700,
+                  fontWeight: 400,
                   fontSize: 12,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",

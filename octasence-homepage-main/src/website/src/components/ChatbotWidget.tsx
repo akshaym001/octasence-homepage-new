@@ -364,10 +364,11 @@ const ChatbotWidget: React.FC = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${msg.role === 'user'
-                      ? 'bg-[#5b6cf3] text-white rounded-br-sm'
-                      : 'bg-white text-gray-800 rounded-bl-sm'
-                      }`}
+                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${
+                      msg.role === 'user'
+                        ? 'bg-[#5b6cf3] text-white rounded-br-sm'
+                        : 'bg-white text-gray-800 rounded-bl-sm'
+                    }`}
                     style={{ fontSize }}
                   >
                     {msg.text}
@@ -427,8 +428,9 @@ const ChatbotWidget: React.FC = () => {
 
         {/* Green / grey status dot */}
         <span
-          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${isOpen ? 'bg-green-400' : 'bg-gray-400'
-            }`}
+          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${
+            isOpen ? 'bg-green-400' : 'bg-gray-400'
+          }`}
         />
       </motion.button>
     </div>

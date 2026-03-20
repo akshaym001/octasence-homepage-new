@@ -21,7 +21,11 @@ type NavItem =
 
 const navItems: NavItem[] = [
   { type: 'link', label: 'Home', href: '/' },
-  { type: 'link', label: 'Products', href: '/products-infrastructure-intelligence' },
+  {
+    type: 'link',
+    label: 'Products',
+    href: '/products-infrastructure-intelligence',
+  },
   {
     type: 'dropdown',
     label: 'About',
@@ -70,7 +74,8 @@ function SolutionsDropdown() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -84,7 +89,10 @@ function SolutionsDropdown() {
       >
         Solutions
         <TbChevronDown
-          className={cn('ml-1 transition-transform duration-200', open && 'rotate-180')}
+          className={cn(
+            'ml-1 transition-transform duration-200',
+            open && 'rotate-180',
+          )}
         />
       </button>
 
@@ -139,7 +147,6 @@ export default function Navbar() {
       )}
     >
       <nav className="relative flex items-center justify-between px-6 py-1.5 lg:px-12 max-w-[1440px] mx-auto">
-
         {/* Logo — unchanged */}
         <Link href="/" className="flex items-center">
           <div className="w-28 h-14 md:w-36 md:h-16 flex items-center justify-center overflow-hidden">
@@ -180,7 +187,11 @@ export default function Navbar() {
                 );
               }
               return (
-                <Dropdown key={item.label} label={item.label} items={item.items} />
+                <Dropdown
+                  key={item.label}
+                  label={item.label}
+                  items={item.items}
+                />
               );
             })}
 

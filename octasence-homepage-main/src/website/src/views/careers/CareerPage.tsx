@@ -1,52 +1,60 @@
 'use client';
 
 import { isBefore, parseISO } from 'date-fns';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import {
   FiArrowRight,
+  FiBookOpen,
   FiDollarSign,
   FiHome,
   FiMonitor,
-  FiBookOpen,
-  FiTrendingUp,
   FiShield,
-  FiUsers,
   FiStar,
+  FiTrendingUp,
+  FiUsers,
 } from 'react-icons/fi';
 
-import { CustomButton, NoData } from '@/components/ui';
 import mainConfig from '@/configs/mainConfigs';
 import { useCareers, useDepartments } from '@/hooks/useApiHooks';
 
 // Helper component for the 3D Canvas Globe
-const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rotationOffset, isDragging }) => {
+const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({
+  rotationOffset,
+  isDragging,
+}) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const rotationRef = React.useRef(0);
   const dragOffsetRef = React.useRef(0);
 
   const dots = React.useMemo(() => {
-    const points: { x: number; y: number; z: number; type: 'land' | 'ocean' }[] = [];
+    const points: {
+      x: number;
+      y: number;
+      z: number;
+      type: 'land' | 'ocean';
+    }[] = [];
     const count = 3500;
     for (let i = 0; i < count; i++) {
       const phi = Math.acos(-1 + (2 * i) / count);
       const theta = Math.sqrt(count * Math.PI) * phi;
       const lat = (phi * 180) / Math.PI - 90;
-      const lon = ((theta * 180) / Math.PI) % 360 - 180;
+      const lon = (((theta * 180) / Math.PI) % 360) - 180;
       const isLand =
         (lon > -130 && lon < -35 && lat > -55 && lat < 75) || // Americas
         (lon > -10 && lon < 150 && lat > 15 && lat < 78) || // Eurasia
         (lon > -20 && lon < 55 && lat > -38 && lat < 38) || // Africa
         (lon > 95 && lon < 155 && lat > -48 && lat < 5) || // Australia & Indonesia
         (lon > -30 && lon < -10 && lat > 60 && lat < 85) || // Greenland
-        (lat > 75) || (lat < -80);
+        lat > 75 ||
+        lat < -80;
 
       points.push({
         x: Math.sin(phi) * Math.cos(theta),
         y: Math.cos(phi),
         z: Math.sin(phi) * Math.sin(theta),
-        type: isLand ? 'land' : 'ocean'
+        type: isLand ? 'land' : 'ocean',
       });
     }
     return points;
@@ -57,7 +65,7 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
     { name: 'US', lat: 39.0, lon: -98.0 },
     { name: 'India', lat: 28.6, lon: 77.2 },
     { name: 'Australia', lat: -33.8, lon: 151.2 },
-    { name: 'Asia', lat: 35.0, lon: 105.0 }
+    { name: 'Asia', lat: 35.0, lon: 105.0 },
   ];
 
   React.useEffect(() => {
@@ -100,7 +108,7 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
       }
       ctx.globalAlpha = 1.0;
 
-      locations.forEach(loc => {
+      locations.forEach((loc) => {
         const phi = (90 - loc.lat) * (Math.PI / 180);
         const theta = (loc.lon + 180) * (Math.PI / 180);
         const dx = Math.sin(phi) * Math.cos(theta);
@@ -130,11 +138,21 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
   }, [isDragging, dots]);
 
   return (
-    <div className="w-full flex justify-center" style={{
-      maskImage: 'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
-      WebkitMaskImage: 'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
-    }}>
-      <canvas ref={canvasRef} width={800} height={800} className="w-full max-w-[600px] aspect-square" />
+    <div
+      className="w-full flex justify-center"
+      style={{
+        maskImage:
+          'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
+        WebkitMaskImage:
+          'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        width={800}
+        height={800}
+        className="w-full max-w-[600px] aspect-square"
+      />
     </div>
   );
 };
@@ -258,35 +276,31 @@ const CareerPage: React.FC = () => {
           animate={{
             scale: [1, 1.2, 1],
             x: ['-10%', '10%', '-10%'],
-            y: ['-5%', '5%', '-5%']
+            y: ['-5%', '5%', '-5%'],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute -top-1/4 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_30%_50%,#4338ca_0%,transparent_50%)] opacity-30 blur-[120px]"
         />
         <motion.div
           animate={{
             scale: [1.2, 1, 1.2],
             x: ['10%', '-10%', '10%'],
-            y: ['5%', '-5%', '5%']
+            y: ['5%', '-5%', '5%'],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_70%_50%,#3b82f6_0%,transparent_50%)] opacity-20 blur-[120px]"
         />
         <motion.div
           animate={{
             opacity: [0.3, 0.5, 0.3],
-            scale: [1, 1.1, 1]
+            scale: [1, 1.1, 1],
           }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,#6d28d9_0%,transparent_60%)] opacity-20 blur-[100px]"
         />
       </div>
     );
   };
-
-
-
-
 
   const heroTokens = {
     '--one-if-corner-shape-supported': '1',
@@ -408,7 +422,8 @@ const CareerPage: React.FC = () => {
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto">
-            Engineering Agentic <span className="text-blue-500">Infrastructure</span>
+            Engineering Agentic{' '}
+            <span className="text-blue-500">Infrastructure</span>
           </h1>
 
           <p className="text-lg md:text-2xl text-blue-500 font-serif italic font-bold tracking-[0.1em] opacity-95 animate-fade-in-up">
@@ -417,7 +432,10 @@ const CareerPage: React.FC = () => {
 
           <div className="max-w-3xl mx-auto space-y-4">
             <p className="text-base md:text-xl text-gray-400 font-medium leading-relaxed italic px-4">
-              &quot;Architecting Intelligent Infrastructure for the Agentic AI Era. <br className="hidden md:block" /> Join the <span className="text-white font-bold not-italic">Octasence</span> engineering team.&quot;
+              &quot;Architecting Intelligent Infrastructure for the Agentic AI
+              Era. <br className="hidden md:block" /> Join the{' '}
+              <span className="text-white font-bold not-italic">Octasence</span>{' '}
+              engineering team.&quot;
             </p>
             <p className="text-[10px] md:text-base text-gray-500 tracking-widest uppercase">
               Excellence is our standard &bull; Octasence is our mission
@@ -426,17 +444,28 @@ const CareerPage: React.FC = () => {
 
           <div className="pt-4 md:pt-6">
             <button
-              onClick={() => window.open('https://www.linkedin.com/company/octasence/jobs/', '_blank')}
+              onClick={() =>
+                window.open(
+                  'https://www.linkedin.com/company/octasence/jobs/',
+                  '_blank',
+                )
+              }
               className="group relative px-8 py-4 md:px-10 md:py-5 bg-[#4338ca] hover:bg-[#3d46ab] text-white rounded-full font-black text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_20px_50px_rgba(67,56,202,0.4)] flex items-center gap-4 mx-auto"
             >
               Open Positions
-              <FiArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+              <FiArrowRight
+                size={24}
+                className="group-hover:translate-x-2 transition-transform"
+              />
             </button>
           </div>
         </div>
       </header>
 
-      <div id="open-positions" className={`space-y-12 md:space-y-24 w-full py-16 md:py-24 ${mainConfig.containerClass} relative`}>
+      <div
+        id="open-positions"
+        className={`space-y-12 md:space-y-24 w-full py-16 md:py-24 ${mainConfig.containerClass} relative`}
+      >
         {/* Benefits Section as a single whole card */}
         <div className="px-4 lg:px-8 pb-10 md:pb-20">
           <div
@@ -451,7 +480,9 @@ const CareerPage: React.FC = () => {
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
 
             <div className="relative z-10 flex flex-col mb-12 md:mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Benefits</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Benefits
+              </h2>
               <div className="h-1.5 w-16 md:w-24 bg-indigo-600 rounded-full" />
             </div>
 
@@ -464,15 +495,20 @@ const CareerPage: React.FC = () => {
                 { icon: <FiMonitor />, text: 'Inclusive workplace' },
                 { icon: <FiUsers />, text: 'Team-building events' },
                 { icon: <FiBookOpen />, text: 'Learning & Development' },
-                { icon: <FiStar />, text: 'Great culture' }
+                { icon: <FiStar />, text: 'Great culture' },
               ].map((benefit, idx) => (
                 <div
                   key={idx}
                   className="flex items-center gap-6 md:gap-8 group animate-fade-in-up"
-                  style={{ animationDelay: `${idx * 100}ms`, animationFillMode: 'both' }}
+                  style={{
+                    animationDelay: `${idx * 100}ms`,
+                    animationFillMode: 'both',
+                  }}
                 >
                   <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500 flex-shrink-0">
-                    {React.cloneElement(benefit.icon as React.ReactElement, { size: 28 })}
+                    {React.cloneElement(benefit.icon as React.ReactElement, {
+                      size: 28,
+                    })}
                   </div>
                   <span className="text-lg md:text-2xl font-bold text-gray-300 group-hover:text-white transition-colors duration-300">
                     {benefit.text}
@@ -509,10 +545,7 @@ const CareerPage: React.FC = () => {
             onTouchEnd={handleMouseUp}
           >
             <div className="scale-75 md:scale-100 transition-transform duration-500">
-              <Globe
-                rotationOffset={rotation * 0.01}
-                isDragging={isDragging}
-              />
+              <Globe rotationOffset={rotation * 0.01} isDragging={isDragging} />
             </div>
           </div>
         </div>

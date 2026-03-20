@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "OctaSense — Use Cases",
-  description: "AI-Powered Predictive Intelligence for Critical Infrastructure",
+  title: 'OctaSense — Use Cases',
+  description: 'AI-Powered Predictive Intelligence for Critical Infrastructure',
 };
 
 export default function RootLayout({

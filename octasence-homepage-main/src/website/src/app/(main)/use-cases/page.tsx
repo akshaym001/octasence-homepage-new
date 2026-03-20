@@ -1,27 +1,46 @@
-"use client";
-import { useEffect, useRef, useState, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
-import { caseStudies } from "./data/caseStudies";
+'use client';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
-const SECTORS = ["All", "Mining", "Oil & Gas", "Tunnels", "Dams", "Multi-Domain"];
+import { caseStudies } from './data/caseStudies';
+
+const SECTORS = [
+  'All',
+  'Mining',
+  'Oil & Gas',
+  'Tunnels',
+  'Dams',
+  'Multi-Domain',
+];
 
 const ICONS: Record<string, string> = {
-  Mining: "M",
-  "Oil & Gas": "⬡",
-  Tunnels: "◎",
-  Dams: "≋",
-  "Multi-Domain": "◈",
+  Mining: 'M',
+  'Oil & Gas': '⬡',
+  Tunnels: '◎',
+  Dams: '≋',
+  'Multi-Domain': '◈',
 };
 
-function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
+function CaseCard({
+  cs,
+  index,
+}: {
+  cs: (typeof caseStudies)[0];
+  index: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -30,57 +49,95 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
   return (
     <div
       ref={ref}
-      style={{ animationDelay: `${(index % 3) * 0.08}s`, opacity: visible ? undefined : 0 }}
-      className={visible ? "animate-fiu" : ""}
+      style={{
+        animationDelay: `${(index % 3) * 0.08}s`,
+        opacity: visible ? undefined : 0,
+      }}
+      className={visible ? 'animate-fiu' : ''}
     >
-      <Link href={`/use-cases/${cs.id}`} style={{ textDecoration: "none" }}>
-        <div className="case-card" style={{ borderRadius: 6, cursor: "pointer" }}>
+      <Link href={`/use-cases/${cs.id}`} style={{ textDecoration: 'none' }}>
+        <div
+          className="case-card"
+          style={{ borderRadius: 6, cursor: 'pointer' }}
+        >
           {/* Image block */}
           <div
             className="img-block"
-            style={{ height: 200, borderRadius: "5px 5px 0 0", background: `linear-gradient(135deg, ${cs.heroColor} 0%, #0f172a 100%)` }}
+            style={{
+              height: 200,
+              borderRadius: '5px 5px 0 0',
+              background: `linear-gradient(135deg, ${cs.heroColor} 0%, #0f172a 100%)`,
+            }}
           >
             {/* Sector icon */}
-            <div style={{ position: "absolute", top: 16, left: 16, zIndex: 2 }}>
+            <div style={{ position: 'absolute', top: 16, left: 16, zIndex: 2 }}>
               <span className="sector-tag">{cs.tag}</span>
             </div>
             {/* Case number */}
             <div
               style={{
-                position: "absolute",
+                position: 'absolute',
                 bottom: 16,
                 right: 20,
-                fontFamily: "var(--font-display)",
+                fontFamily: 'var(--font-display)',
                 fontSize: 56,
                 fontWeight: 800,
-                color: "rgba(59,130,246,0.08)",
+                color: 'rgba(59,130,246,0.08)',
                 lineHeight: 1,
-                userSelect: "none",
+                userSelect: 'none',
               }}
             >
-              {String(cs.number).padStart(2, "0")}
+              {String(cs.number).padStart(2, '0')}
             </div>
             {/* Decorative lines */}
             <svg
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15 }}
-              viewBox="0 0 400 200" preserveAspectRatio="none"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                opacity: 0.15,
+              }}
+              viewBox="0 0 400 200"
+              preserveAspectRatio="none"
             >
-              <line x1="0" y1="200" x2="400" y2="0" stroke="#3b82f6" strokeWidth="0.5" />
-              <line x1="-50" y1="200" x2="350" y2="0" stroke="#3b82f6" strokeWidth="0.3" />
-              <line x1="50" y1="200" x2="450" y2="0" stroke="#3b82f6" strokeWidth="0.3" />
+              <line
+                x1="0"
+                y1="200"
+                x2="400"
+                y2="0"
+                stroke="#3b82f6"
+                strokeWidth="0.5"
+              />
+              <line
+                x1="-50"
+                y1="200"
+                x2="350"
+                y2="0"
+                stroke="#3b82f6"
+                strokeWidth="0.3"
+              />
+              <line
+                x1="50"
+                y1="200"
+                x2="450"
+                y2="0"
+                stroke="#3b82f6"
+                strokeWidth="0.3"
+              />
             </svg>
           </div>
 
           {/* Content */}
-          <div style={{ padding: "24px 28px 28px" }}>
+          <div style={{ padding: '24px 28px 28px' }}>
             <div
               style={{
-                fontFamily: "var(--font-display)",
+                fontFamily: 'var(--font-display)',
                 fontSize: 11,
                 fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "#ffffff",
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#ffffff',
                 marginBottom: 12,
               }}
             >
@@ -88,10 +145,10 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
             </div>
             <h3
               style={{
-                fontFamily: "var(--font-display)",
+                fontFamily: 'var(--font-display)',
                 fontSize: 17,
                 fontWeight: 700,
-                color: "var(--accent-blue)",
+                color: 'var(--accent-blue)',
                 lineHeight: 1.35,
                 marginBottom: 12,
               }}
@@ -101,7 +158,7 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
             <p
               style={{
                 fontSize: 13,
-                color: "#ffffff",
+                color: '#ffffff',
                 lineHeight: 1.7,
                 marginBottom: 20,
               }}
@@ -109,31 +166,45 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
               {cs.summary.slice(0, 120)}...
             </p>
             {/* Outcomes preview */}
-            <div style={{ borderTop: "1px solid rgba(59,130,246,0.08)", paddingTop: 16 }}>
-              <div className="outcome-item" style={{ fontSize: 12, marginBottom: 6 }}>
-                {cs.outcomes[0].split(":")[0]}
+            <div
+              style={{
+                borderTop: '1px solid rgba(59,130,246,0.08)',
+                paddingTop: 16,
+              }}
+            >
+              <div
+                className="outcome-item"
+                style={{ fontSize: 12, marginBottom: 6 }}
+              >
+                {cs.outcomes[0].split(':')[0]}
               </div>
               <div className="outcome-item" style={{ fontSize: 12 }}>
-                {cs.outcomes[1].split(":")[0]}
+                {cs.outcomes[1].split(':')[0]}
               </div>
             </div>
             {/* Read more */}
             <div
               style={{
                 marginTop: 20,
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 gap: 6,
-                color: "var(--accent-blue)",
+                color: 'var(--accent-blue)',
                 fontSize: 12,
                 fontWeight: 600,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
               }}
             >
               Read Case Study
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
           </div>
@@ -146,10 +217,15 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
 function UseCasesPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const sectorParam = searchParams.get("sector");
-  const initialSector = sectorParam && SECTORS.includes(sectorParam) ? sectorParam : "All";
+  const sectorParam = searchParams.get('sector');
+  const initialSector =
+    sectorParam && SECTORS.includes(sectorParam) ? sectorParam : 'All';
   // If user arrived with a sector param, we lock the view to that sector (no tabs shown)
-  const isSectorLocked = !!(sectorParam && SECTORS.includes(sectorParam) && sectorParam !== "All");
+  const isSectorLocked = !!(
+    sectorParam &&
+    SECTORS.includes(sectorParam) &&
+    sectorParam !== 'All'
+  );
   const [filter, setFilter] = useState(initialSector);
   const [headerVisible, setHeaderVisible] = useState(false);
 
@@ -158,48 +234,59 @@ function UseCasesPageInner() {
     return () => clearTimeout(t);
   }, []);
 
-  const filtered = filter === "All"
-    ? caseStudies
-    : caseStudies.filter((cs) => cs.tag === filter || cs.sector.includes(filter));
+  const filtered =
+    filter === 'All'
+      ? caseStudies
+      : caseStudies.filter(
+          (cs) => cs.tag === filter || cs.sector.includes(filter),
+        );
 
   return (
-    <main style={{ minHeight: "100vh", background: "var(--bg-primary)" }} className="grid-bg">
+    <main
+      style={{ minHeight: '100vh', background: 'var(--bg-primary)' }}
+      className="grid-bg"
+    >
       {/* Header */}
       <section
         className="hero-gradient"
-        style={{ padding: "100px 0 80px", position: "relative", overflow: "hidden" }}
+        style={{
+          padding: '100px 0 80px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
       >
         {/* Radial accent */}
         <div
           style={{
-            position: "absolute",
-            top: "-10%",
-            right: "10%",
+            position: 'absolute',
+            top: '-10%',
+            right: '10%',
             width: 600,
             height: 600,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%)",
-            pointerEvents: "none",
+            borderRadius: '50%',
+            background:
+              'radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%)',
+            pointerEvents: 'none',
           }}
         />
 
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
           {/* Eyebrow */}
           <div
             style={{
               opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "none" : "translateY(12px)",
-              transition: "all 0.6s ease",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center"
+              transform: headerVisible ? 'none' : 'translateY(12px)',
+              transition: 'all 0.6s ease',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
             }}
           >
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 gap: 12,
                 marginBottom: 28,
               }}
@@ -208,7 +295,7 @@ function UseCasesPageInner() {
                 style={{
                   width: 32,
                   height: 1,
-                  background: "var(--accent-blue)",
+                  background: 'var(--accent-blue)',
                 }}
               ></div>
               <span
@@ -216,9 +303,9 @@ function UseCasesPageInner() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: 11,
                   fontWeight: 700,
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  color: "var(--accent-blue)",
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent-blue)',
                 }}
               >
                 Case Studies
@@ -230,25 +317,25 @@ function UseCasesPageInner() {
           <h1
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(36px, 5vw, 64px)",
+              fontSize: 'clamp(36px, 5vw, 64px)',
               fontWeight: 800,
-              color: "var(--accent-blue)",
+              color: 'var(--accent-blue)',
               lineHeight: 1.1,
-              maxWidth: "100%",
+              maxWidth: '100%',
               marginBottom: 24,
               opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "none" : "translateY(20px)",
-              transition: "all 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s",
-              textAlign: "center"
+              transform: headerVisible ? 'none' : 'translateY(20px)',
+              transition: 'all 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s',
+              textAlign: 'center',
             }}
           >
-            Real-World Intelligence{" "}
+            Real-World Intelligence{' '}
             <span
               style={{
-                background: "linear-gradient(135deg, #3b82f6, #93c5fd)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                background: 'linear-gradient(135deg, #3b82f6, #93c5fd)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
               }}
             >
               Across Critical Infrastructure
@@ -259,40 +346,47 @@ function UseCasesPageInner() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 16,
-              color: "#ffffff",
+              color: '#ffffff',
               lineHeight: 1.8,
               maxWidth: 800,
               marginBottom: 48,
               opacity: headerVisible ? 1 : 0,
-              transition: "all 0.7s ease 0.2s",
-              textAlign: "center",
-              margin: "0 auto 48px auto"
+              transition: 'all 0.7s ease 0.2s',
+              textAlign: 'center',
+              margin: '0 auto 48px auto',
             }}
           >
-            Ten detailed deployments spanning mining, tunnels, dams, oil and gas, and integrated infrastructure. Each case study demonstrates how OctaSense transforms reactive inspection into predictive intelligence.
+            Ten detailed deployments spanning mining, tunnels, dams, oil and
+            gas, and integrated infrastructure. Each case study demonstrates how
+            OctaSense transforms reactive inspection into predictive
+            intelligence.
           </p>
 
           {/* Stats row */}
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center',
               gap: 40,
-              flexWrap: "wrap",
+              flexWrap: 'wrap',
               opacity: headerVisible ? 1 : 0,
-              transition: "all 0.7s ease 0.3s",
+              transition: 'all 0.7s ease 0.3s',
             }}
           >
             {[
-              { value: "10", label: "Case Studies" },
-              { value: "5", label: "Sectors Covered" },
-              { value: "$50M+", label: "Losses Prevented" },
-              { value: "94%", label: "Detection Accuracy" },
+              { value: '10', label: 'Case Studies' },
+              { value: '5', label: 'Sectors Covered' },
+              { value: '$50M+', label: 'Losses Prevented' },
+              { value: '94%', label: 'Detection Accuracy' },
             ].map((s) => (
-              <div key={s.label} style={{ textAlign: "center" }}>
+              <div key={s.label} style={{ textAlign: 'center' }}>
                 <div
                   className="number-display"
-                  style={{ fontFamily: "'Inter', sans-serif", fontSize: 28, marginBottom: 4 }}
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 28,
+                    marginBottom: 4,
+                  }}
                 >
                   {s.value}
                 </div>
@@ -300,9 +394,9 @@ function UseCasesPageInner() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: 11,
-                    color: "#ffffff",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
+                    color: '#ffffff',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
                     fontWeight: 500,
                   }}
                 >
@@ -319,25 +413,32 @@ function UseCasesPageInner() {
 
       {/* Filter tabs — only shown when NOT locked to a sector */}
       {!isSectorLocked && (
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 40px 0" }}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <div
+          style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 40px 0' }}
+        >
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {SECTORS.map((s) => (
               <button
                 key={s}
                 onClick={() => setFilter(s)}
                 style={{
-                  padding: "8px 20px",
+                  padding: '8px 20px',
                   borderRadius: 3,
-                  border: filter === s ? "1px solid var(--accent-blue)" : "1px solid rgba(59,130,246,0.12)",
-                  background: filter === s ? "rgba(59,130,246,0.1)" : "transparent",
-                  color: filter === s ? "var(--accent-blue)" : "var(--text-muted)",
+                  border:
+                    filter === s
+                      ? '1px solid var(--accent-blue)'
+                      : '1px solid rgba(59,130,246,0.12)',
+                  background:
+                    filter === s ? 'rgba(59,130,246,0.1)' : 'transparent',
+                  color:
+                    filter === s ? 'var(--accent-blue)' : 'var(--text-muted)',
                   fontSize: 12,
                   fontWeight: 600,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  cursor: "pointer",
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
                   fontFamily: "'Inter', sans-serif",
-                  transition: "all 0.2s ease",
+                  transition: 'all 0.2s ease',
                 }}
               >
                 {s}
@@ -349,57 +450,88 @@ function UseCasesPageInner() {
 
       {/* Sector label shown when locked */}
       {isSectorLocked && (
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 40px 0" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div
+          style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 40px 0' }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <button
-              onClick={() => router.push("/applications-infrastructure-intelligence")}
+              onClick={() =>
+                router.push('/applications-infrastructure-intelligence')
+              }
               style={{
-                display: "inline-flex",
-                alignItems: "center",
+                display: 'inline-flex',
+                alignItems: 'center',
                 gap: 6,
-                background: "transparent",
-                border: "1px solid rgba(59,130,246,0.15)",
+                background: 'transparent',
+                border: '1px solid rgba(59,130,246,0.15)',
                 borderRadius: 3,
-                color: "var(--text-muted)",
+                color: 'var(--text-muted)',
                 fontSize: 11,
                 fontWeight: 600,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                padding: "6px 14px",
-                cursor: "pointer",
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                padding: '6px 14px',
+                cursor: 'pointer',
                 fontFamily: "'Inter', sans-serif",
-                transition: "all 0.2s ease",
+                transition: 'all 0.2s ease',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent-blue)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.4)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.15)"; }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--accent-blue)';
+                e.currentTarget.style.borderColor = 'rgba(59,130,246,0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'var(--text-muted)';
+                e.currentTarget.style.borderColor = 'rgba(59,130,246,0.15)';
+              }}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M19 12H5M11 6l-6 6 6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               Back
             </button>
             <div
               style={{
-                display: "inline-flex",
-                alignItems: "center",
+                display: 'inline-flex',
+                alignItems: 'center',
                 gap: 8,
-                background: "rgba(59,130,246,0.08)",
-                border: "1px solid rgba(59,130,246,0.25)",
+                background: 'rgba(59,130,246,0.08)',
+                border: '1px solid rgba(59,130,246,0.25)',
                 borderRadius: 3,
-                color: "var(--accent-blue)",
+                color: 'var(--accent-blue)',
                 fontSize: 11,
                 fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                padding: "6px 14px",
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                padding: '6px 14px',
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              <div style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--accent-blue)", boxShadow: "0 0 6px rgba(59,130,246,0.6)" }} />
+              <div
+                style={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: '50%',
+                  background: 'var(--accent-blue)',
+                  boxShadow: '0 0 6px rgba(59,130,246,0.6)',
+                }}
+              />
               {filter}
             </div>
-            <span style={{ fontSize: 12, color: "var(--text-muted)", fontFamily: "'Inter', sans-serif" }}>
-              {filtered.length} case {filtered.length === 1 ? "study" : "studies"}
+            <span
+              style={{
+                fontSize: 12,
+                color: 'var(--text-muted)',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {filtered.length} case{' '}
+              {filtered.length === 1 ? 'study' : 'studies'}
             </span>
           </div>
         </div>
@@ -409,10 +541,10 @@ function UseCasesPageInner() {
       <div
         style={{
           maxWidth: 1200,
-          margin: "0 auto",
-          padding: "40px 40px 100px",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+          margin: '0 auto',
+          padding: '40px 40px 100px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
           gap: 24,
         }}
       >
@@ -426,7 +558,9 @@ function UseCasesPageInner() {
 
 export default function UseCasesPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: "100vh", background: "#020617" }} />}>
+    <Suspense
+      fallback={<div style={{ minHeight: '100vh', background: '#020617' }} />}
+    >
       <UseCasesPageInner />
     </Suspense>
   );

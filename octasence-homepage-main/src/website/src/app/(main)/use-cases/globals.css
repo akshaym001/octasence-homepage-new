@@ -48,13 +48,22 @@ body {
 }
 
 /* Headings (no bold, just medium emphasis) */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 500;
 }
 
 /* General text */
-p, span, div, a, button {
+p,
+span,
+div,
+a,
+button {
   font-weight: 400;
 }
 
@@ -112,7 +121,11 @@ p, span, div, a, button {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    transparent 60%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -124,7 +137,9 @@ p, span, div, a, button {
 .case-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-5px);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px rgba(59, 130, 246, 0.08);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(59, 130, 246, 0.08);
 }
 
 /* ─── Sector Tag ─────────────────────────────────────────────── */
@@ -146,7 +161,12 @@ p, span, div, a, button {
 
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.25), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.25),
+    transparent
+  );
   margin: 48px 0;
 }
 
@@ -169,39 +189,55 @@ p, span, div, a, button {
   height: 5px;
   border-radius: 50%;
   background: var(--accent-blue);
-  box-shadow: 0 0 6px rgba(59,130,246,0.5);
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
 }
 
 /* ─── Table Rows ─────────────────────────────────────────────── */
 
 .sensor-row {
-  border-bottom: 1px solid rgba(59,130,246,0.06);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.06);
   transition: background 0.2s;
 }
 
 .sensor-row:hover {
-  background: rgba(59,130,246,0.03);
+  background: rgba(59, 130, 246, 0.03);
 }
 
 /* ─── Animations ─────────────────────────────────────────────── */
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes countUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fiu {
-  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fi {
@@ -212,8 +248,16 @@ p, span, div, a, button {
 
 .hero-gradient {
   background:
-    radial-gradient(ellipse at 15% 50%, rgba(59,130,246,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 20%, rgba(59,130,246,0.04) 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 15% 50%,
+      rgba(59, 130, 246, 0.07) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 85% 20%,
+      rgba(59, 130, 246, 0.04) 0%,
+      transparent 45%
+    ),
     #020617;
 }
 
@@ -232,5 +276,9 @@ p, span, div, a, button {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, transparent 70%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.06) 0%,
+    transparent 70%
+  );
 }

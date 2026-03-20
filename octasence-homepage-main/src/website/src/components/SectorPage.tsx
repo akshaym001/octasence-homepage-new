@@ -27,10 +27,12 @@ export default function SectorPage({
 }: SectorPageProps) {
   return (
     <div className="min-h-screen bg-[#0c1018] text-white font-[Outfit]">
-
       {/* HERO */}
       <section className="pt-32 pb-20 text-center px-6">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           <p className="text-blue-400 uppercase tracking-widest text-sm mb-4">
             {subtitle}
           </p>
@@ -54,7 +56,10 @@ export default function SectorPage({
       <section className="max-w-5xl mx-auto px-6 mb-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((s, i) => (
-            <div key={i} className="bg-white/[0.05] border border-white/10 p-6 rounded-xl text-center">
+            <div
+              key={i}
+              className="bg-white/[0.05] border border-white/10 p-6 rounded-xl text-center"
+            >
               <div className="text-2xl font-bold">{s.value}</div>
               <div className="text-white/50 text-sm mt-1">{s.label}</div>
             </div>
@@ -68,7 +73,10 @@ export default function SectorPage({
 
         <div className="space-y-8">
           {caseStudies.map((cs) => (
-            <div key={cs.id} className="bg-white/[0.05] border border-white/10 p-6 rounded-2xl">
+            <div
+              key={cs.id}
+              className="bg-white/[0.05] border border-white/10 p-6 rounded-2xl"
+            >
               <h3 className="text-xl font-semibold mb-2">
                 {cs.id} — {cs.title}
               </h3>

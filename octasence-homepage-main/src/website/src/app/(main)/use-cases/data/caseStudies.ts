@@ -7,6 +7,7 @@ export interface CaseStudy {
   subtitle: string;
   summary: string;
   heroColor: string;
+  image: string;
 
   background: string;
   technicalProblem?: string;
@@ -46,6 +47,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Open-Pit Mine Slope Failure Prevention",
     subtitle: "Predictive geotechnical monitoring for a 420-metre open-pit copper mine in sub-Saharan Africa.",
     heroColor: "#1a2f1a",
+    image: "/assets/images/case-studies/cs1.jpeg",
     summary:
       "A major copper mining operation in Zambia faced chronic slope instability challenges across a 420 m deep open-pit mine. OctaSense deployed a dense geotechnical sensor network combined with a multi-variate AI model to provide continuous slope stability assessment and early warning — reducing unplanned downtime and preventing two imminent slope failures.",
     background:
@@ -96,6 +98,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Underground Mine Roof Collapse Prediction",
     subtitle: "Real-time stope stability monitoring in a deep hard-rock gold mine.",
     heroColor: "#1f1a0f",
+    image: "/assets/images/case-studies/cs2.jpeg",
     summary:
       "A deep-level gold mine in South Africa operating at 2,800 m depth required a step-change improvement in stope ground control. OctaSense integrated microseismic monitoring, extensometers, and stress cells into an AI-driven hazard classification system that reduced rockfall incidents by 79% and enabled dynamic exclusion zone management.",
     background:
@@ -140,6 +143,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Tailings Dam Failure Risk Monitoring",
     subtitle: "Continuous stability monitoring of a 45 Mm³ tailings storage facility.",
     heroColor: "#0f1f2f",
+    image: "/assets/images/case-studies/cs3.jpeg",
     summary:
       "Following the Brumadinho dam disaster, a Brazilian iron ore producer urgently required a credible, independent monitoring system for its 45 Mm³ tailings storage facility. OctaSense implemented a comprehensive instrumentation and AI platform that achieved Certifiable Stability Status within 6 months and now generates continuous Factor of Safety estimates validated by independent geotechnical engineers.",
     background:
@@ -186,6 +190,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Metro Tunnel Structural Health Monitoring",
     subtitle: "Long-term SHM for a 42 km urban metro network across 68 tunnel segments.",
     heroColor: "#101828",
+    image: "/assets/images/case-studies/cs4.jpeg",
     summary:
       "A major metropolitan transit authority engaged OctaSense to deliver a permanent SHM system across its ageing 42 km underground metro network. Covering 68 tunnel segments spanning 40 years of construction techniques, the platform provides continuous structural assessment, automated anomaly reports, and maintenance prioritisation — enabling a shift from time-based to condition-based maintenance.",
     background:
@@ -233,6 +238,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Oil & Gas Pipeline Leak Detection",
     subtitle: "Acoustic and pressure-based leak detection across a 680 km sub-Saharan pipeline corridor.",
     heroColor: "#1f150a",
+    image: "/assets/images/case-studies/cs5.jpeg",
     summary:
       "An East African pipeline operator required a cost-effective leak detection system for a 680 km crude oil export pipeline crossing remote terrain with variable elevations. OctaSense deployed a hybrid acoustic-pressure system with AI-driven signal classification, achieving < 0.5% volume leak detection and a < 6-minute alert-to-location response.",
     background:
@@ -278,6 +284,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Landslide Risk Monitoring for Pipeline Corridors",
     subtitle: "Geohazard early warning across 340 km of pipeline in mountainous terrain.",
     heroColor: "#1a1f0a",
+    image: "/assets/images/case-studies/cs6.jpeg",
     summary:
       "A gas transmission company operating a 340 km pipeline across the Rwenzori mountain range required a geohazard monitoring system to manage landslide risk at 23 identified high-risk crossings. OctaSense deployed a satellite-ground hybrid monitoring approach with AI-powered slope stability modelling, providing 48-hour predictive warnings that enabled pre-emptive pipeline isolation.",
     background:
@@ -321,6 +328,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Hydropower Dam Seismic & Structural Monitoring",
     subtitle: "Integrated SHM for a 187 m arch dam in a seismically active zone.",
     heroColor: "#0a1020",
+    image: "/assets/images/case-studies/cs7.jpeg",
     summary:
       "A 187 m high concrete arch dam in a seismically active region of Turkey required continuous structural monitoring to comply with post-earthquake inspection protocols and to demonstrate structural integrity to its regulators. OctaSense implemented an integrated seismic and structural monitoring system that provides automated post-event safety assessments within 15 minutes of any significant earthquake.",
     background:
@@ -365,6 +373,7 @@ export const caseStudies: CaseStudy[] = [
     title: "TBM Tunnel Construction Risk Monitoring",
     subtitle: "Real-time surface settlement monitoring during twin-bore metro construction under a live city.",
     heroColor: "#0d1628",
+    image: "/assets/images/case-studies/cs8.jpeg",
     summary:
       "During construction of twin metro bores beneath a densely built historic city centre in India, OctaSense provided a real-time ground settlement monitoring system that protected 340 buildings, 12 utility corridors, and 4 heritage structures from TBM-induced subsidence. The platform triggered 9 TBM operational adjustments that prevented settlement from exceeding consent limits.",
     background:
@@ -410,6 +419,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Aging Dam Structural Health Monitoring",
     subtitle: "Comprehensive SHM for a 91-year-old gravity dam approaching design life.",
     heroColor: "#0f1830",
+    image: "/assets/images/case-studies/cs9.jpeg",
     summary:
       "A 91-year-old concrete gravity dam in the Scottish Highlands, approaching the end of its design life, required a comprehensive condition assessment and ongoing monitoring programme to support a life extension decision. OctaSense deployed a full-spectrum SHM system that identified three previously unknown defects and provided the quantitative basis for a successful 25-year licence renewal.",
     background:
@@ -454,6 +464,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Digital Twin for Integrated Mine-to-Port Infrastructure",
     subtitle: "End-to-end structural and operational monitoring across a 780 km bulk export corridor.",
     heroColor: "#1a1025",
+    image: "/assets/images/case-studies/cs10.jpeg",
     summary:
       "A Tier-1 iron ore producer in Western Australia required a unified monitoring platform spanning an entire mine-to-port export corridor: an open-pit mine, 780 km of heavy-haul railway, a port facility, and a product stockpile. OctaSense delivered a federated digital twin that integrates structural health data from all infrastructure domains into a single operational risk dashboard — enabling dynamic maintenance scheduling and corporate-level risk reporting.",
     background:

@@ -104,9 +104,12 @@ const ContactPage: React.FC = () => {
             detail: 'general inquiry',
           },
         ].map((item, index) => (
-          <button
+          <div
+            role="button"
+            tabIndex={0}
             key={index}
             onClick={() => handleButtonClick(item.detail)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleButtonClick(item.detail); }}
             className="flex w-full cursor-pointer items-center border border-gray-300 bg-white p-6 text-left shadow-sm hover:bg-blue-50"
           >
             <div className="flex-shrink-0 p-4 bg-blue-100 rounded-full mr-4">
@@ -116,7 +119,7 @@ const ContactPage: React.FC = () => {
               <p className="text-gray-600">{item.question}</p>
               <p className="text-[#08162C]">{item.detail}</p>
             </div>
-          </button>
+          </div>
         ))}
       </motion.section>
     </div>

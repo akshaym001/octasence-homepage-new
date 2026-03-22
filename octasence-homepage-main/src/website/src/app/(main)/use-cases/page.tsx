@@ -37,8 +37,15 @@ function CaseCard({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
         <div className="case-card" style={{ borderRadius: 6, cursor: "pointer" }}>
           {/* Image block */}
           <div
-            className="img-block"
-            style={{ height: 200, borderRadius: "5px 5px 0 0", background: `linear-gradient(135deg, ${cs.heroColor} 0%, #0f172a 100%)` }}
+            className="img-block relative"
+            style={{ 
+              position: "relative",
+              height: 200, 
+              borderRadius: "5px 5px 0 0", 
+              backgroundImage: `linear-gradient(to bottom, ${cs.heroColor}40 0%, rgba(15,23,42,0.8) 100%), url(${cs.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            }}
           >
             {/* Sector icon */}
             <div style={{ position: "absolute", top: 16, left: 16, zIndex: 2 }}>
@@ -232,7 +239,7 @@ function UseCasesPageInner() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(36px, 5vw, 64px)",
               fontWeight: 800,
-              color: "var(--accent-blue)",
+              color: "#ffffff",
               lineHeight: 1.1,
               maxWidth: "100%",
               marginBottom: 24,
@@ -242,7 +249,7 @@ function UseCasesPageInner() {
               textAlign: "center"
             }}
           >
-            Real-World Intelligence{" "}
+            Real-World Intelligence Across{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #3b82f6, #93c5fd)",
@@ -251,7 +258,7 @@ function UseCasesPageInner() {
                 backgroundClip: "text",
               }}
             >
-              Across Critical Infrastructure
+              Critical Infrastructure
             </span>
           </h1>
 

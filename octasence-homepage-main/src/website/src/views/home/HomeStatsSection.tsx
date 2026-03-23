@@ -221,8 +221,6 @@ const StatisticsSection: React.FC = () => {
 
   return (
     <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden px-4 md:px-6">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#ECF2FF] to-transparent md:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#ECF2FF] to-transparent md:w-24" />
 
       <motion.div
         className="flex w-max gap-4"
@@ -239,33 +237,38 @@ const StatisticsSection: React.FC = () => {
           return (
             <motion.div
               key={`${stat.key}-${index}`}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className="group flex min-h-[200px] w-[220px] flex-shrink-0 flex-col justify-between border border-white/80 bg-white/75 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white sm:w-[240px] lg:w-[260px]"
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="group flex min-h-[200px] w-[220px] flex-shrink-0 flex-col justify-between rounded-xl border border-white/10 bg-[#031629] p-5 shadow-[0_18px_40px_rgba(2,6,23,0.5)] transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] sm:w-[240px] lg:w-[260px]"
             >
               <div className="space-y-3">
+                
+                {/* Colored Accent */}
                 <div
-                  className="h-1.5 w-14 rounded-full opacity-80"
-                  style={{ backgroundColor: stat.color }}
+                  className="h-1.5 w-14 rounded-full"
+                  style={{
+                    backgroundColor: stat.color,
+                    boxShadow: `0 0 20px ${stat.color}40`,
+                  }}
                 />
+
+                {/* Text */}
                 <div className="space-y-2">
-                  <p className="text-3xl tracking-[-0.03em] text-[#0B1D38]">
+                  <p className="text-3xl font-bold tracking-[-0.03em] text-white">
                     {formatStatValue(stat.value, stat.key)}
                   </p>
-                  <p className="text-sm leading-snug text-[#587193]">
+
+                  <p className="text-sm md:text-base leading-snug text-white/70 font-">
                     {stat.label}
                   </p>
                 </div>
               </div>
 
+              {/* Icon */}
               <div
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-110"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110"
                 style={{ color: stat.color }}
               >
-                <IconComponent
-                  size={20}
-                  color={stat.color}
-                  aria-label={stat.label}
-                />
+                <IconComponent size={20} color={stat.color} />
               </div>
             </motion.div>
           );

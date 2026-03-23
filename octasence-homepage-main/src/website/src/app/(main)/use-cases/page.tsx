@@ -62,7 +62,6 @@ function CaseCard({
         >
           {/* Image block */}
           <div
-<<<<<<< HEAD
             className="img-block relative"
             style={{ 
               position: "relative",
@@ -71,13 +70,6 @@ function CaseCard({
               backgroundImage: `linear-gradient(to bottom, ${cs.heroColor}40 0%, rgba(15,23,42,0.8) 100%), url(${cs.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center"
-=======
-            className="img-block"
-            style={{
-              height: 200,
-              borderRadius: '5px 5px 0 0',
-              background: `linear-gradient(135deg, ${cs.heroColor} 0%, #0f172a 100%)`,
->>>>>>> fc821e00809ccd81d5dea08c2578c0e9efc9577a
             }}
           >
             {/* Sector icon */}
@@ -330,11 +322,7 @@ function UseCasesPageInner() {
               fontFamily: "'Inter', sans-serif",
               fontSize: 'clamp(36px, 5vw, 64px)',
               fontWeight: 800,
-<<<<<<< HEAD
               color: "#ffffff",
-=======
-              color: 'var(--accent-blue)',
->>>>>>> fc821e00809ccd81d5dea08c2578c0e9efc9577a
               lineHeight: 1.1,
               maxWidth: '100%',
               marginBottom: 24,
@@ -344,11 +332,7 @@ function UseCasesPageInner() {
               textAlign: 'center',
             }}
           >
-<<<<<<< HEAD
             Real-World Intelligence Across{" "}
-=======
-            Real-World Intelligence{' '}
->>>>>>> fc821e00809ccd81d5dea08c2578c0e9efc9577a
             <span
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #93c5fd)',

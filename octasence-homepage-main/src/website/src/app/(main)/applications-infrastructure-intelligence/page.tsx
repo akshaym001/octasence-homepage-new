@@ -510,9 +510,9 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({
       <div className="absolute inset-0 rounded-full border border-blue-500/[0.05] animate-[pulse-ring_5s_ease-out_infinite_0.9s]" />
 
       {/* Orbit rings */}
-      <div className="absolute inset-0 rounded-full border border-white/[0.07]" />
+      <div className="absolute inset-0 rounded-full border border-blue-500/20 shadow-[0_0_30px_rgba(79,127,255,0.15)]" />
       <div
-        className="absolute rounded-full border border-white/[0.07]"
+        className="absolute rounded-full border border-blue-500/20 shadow-[0_0_30px_rgba(79,127,255,0.15)]"
         style={{
           width: 340,
           height: 340,
@@ -522,7 +522,7 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({
         }}
       />
       <div
-        className="absolute rounded-full border border-white/[0.07]"
+        className="absolute rounded-full border border-blue-500/20 shadow-[0_0_30px_rgba(79,127,255,0.15)]"
         style={{
           width: 170,
           height: 170,
@@ -580,7 +580,7 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({
               className={`absolute z-10 rounded-full flex flex-col items-center justify-center text-center p-2 cursor-pointer transition-all duration-250 ${
                 isHighlighted
                   ? 'border-blue-500/55 bg-[#1a2130] scale-110'
-                  : 'border-white/[0.07] bg-[#131922] hover:border-blue-500/55 hover:bg-[#1a2130]'
+                  : 'border-white/[0.07] bg-[#131922] shadow-[0_0_20px_rgba(79,127,255,0.08)] hover:border-blue-500/55 hover:bg-[#1a2130]'
               } border`}
               style={{ width: 78, height: 78 }}
               onMouseEnter={() => onHover(i)}
@@ -934,10 +934,40 @@ export default function SectorsPage() {
           id="sectors"
           className="relative z-10 py-24"
           ref={orbitWrapRef}
-          style={{ background: '#0d1520' }}
+          style={{
+  background: `
+    radial-gradient(circle at 50% 50%, rgba(79,127,255,0.08), transparent 60%),
+    radial-gradient(circle at 20% 30%, rgba(99,102,241,0.08), transparent 50%),
+    #0d1520
+  `,
+}}
         >
           {/* Strobe canvas spans the full section */}
           <StrobeCanvas containerRef={orbitWrapRef} />
+          {/* 🔥 Background FX Layer */}
+{/* 🔥 Background FX Layer */}
+<div className="absolute inset-0 pointer-events-none z-0">
+
+  {/* Grid overlay */}
+  <div
+    className="absolute inset-0 opacity-[0.05]"
+    style={{
+      backgroundImage:
+        'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
+      backgroundSize: '60px 60px',
+    }}
+  />
+
+  {/* Center glow */}
+  <div className="absolute left-1/2 top-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-blue-500/10 blur-[120px]" />
+
+  {/* Left glow */}
+  <div className="absolute left-[10%] top-[30%] w-[300px] h-[300px] bg-indigo-500/10 blur-[100px]" />
+
+  {/* Right glow */}
+  <div className="absolute right-[10%] top-[60%] w-[300px] h-[300px] bg-cyan-500/10 blur-[100px]" />
+
+</div>
 
           <div className="relative z-10 max-w-[1100px] mx-auto px-12">
             <motion.div

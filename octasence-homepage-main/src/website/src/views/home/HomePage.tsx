@@ -55,25 +55,7 @@ const HomePage = () => {
 
         <PlatformShowcase />
 
-        {/* Smart Infrastructure Sensors */}
-        <MotionSection>
-          <ReversibleContentSection
-            title="Smart Infrastructure Sensors"
-            subtitle="IoT Sensor Hardware"
-            description="OctaSence deploys rugged industrial IoT sensors that capture strain, displacement, vibration, groundwater pressure, and environmental conditions. Built to withstand extreme environments across mines, tunnels, dams, and bridges — delivering continuous, reliable data streams."
-            buttonText="Learn more"
-            buttonLink="/products/sensors"
-            imageUrl="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&q=80"
-            reverse={false}
-            backgroundColor="bg-transparent"
-            subtitleColor="text-blue-100"
-            subtitleBgColor="bg-white/10"
-            titleClassName="text-white"
-            descriptionClassName="text-white/80"
-            linkClassName="text-blue-300"
-          />
-        </MotionSection>
-
+      
         {/* AI Monitoring Platform */}
         <MotionSection>
           <AnalyticsContentSection
@@ -110,6 +92,25 @@ const HomePage = () => {
             linkClassName="text-blue-300"
             leftWidth="lg:w-1/3"
             rightWidth="lg:w-2/3"
+          />
+        </MotionSection>
+
+        {/* Smart Infrastructure Sensors */}
+        <MotionSection>
+          <ReversibleContentSection
+            title="Smart Infrastructure Sensors"
+            subtitle="IoT Sensor Hardware"
+            description="OctaSence deploys rugged industrial IoT sensors that capture strain, displacement, vibration, groundwater pressure, and environmental conditions. Built to withstand extreme environments across mines, tunnels, dams, and bridges — delivering continuous, reliable data streams."
+            buttonText="Learn more"
+            buttonLink="/products/sensors"
+            imageUrl="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&q=80"
+            reverse={false}
+            backgroundColor="bg-[#EDF3FF]"
+            subtitleColor="text-black"
+            subtitleBgColor="bg-white"
+            titleClassName="text-[#08162C]"
+            descriptionClassName="text-[#31456F]"
+            linkClassName="text-[#0F47D7]"
           />
         </MotionSection>
 

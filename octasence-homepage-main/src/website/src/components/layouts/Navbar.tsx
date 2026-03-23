@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
-import { TbChevronDown, TbMenu } from 'react-icons/tb';
+import { TbMenu } from 'react-icons/tb';
 
 import { CustomButton } from '@/components/ui';
 import { cn } from '@/lib/utils';
@@ -33,18 +33,17 @@ const navItems: NavItem[] = [
       { title: 'About OctaSence', href: '/about-us' },
       { title: 'Careers', href: '/careers' },
       { title: 'Contact Us', href: '/contact' },
-      { title: 'Press', href: '/press' },
     ],
   },
 ];
 
-// ── Original simple Dropdown (unchanged) ─────────────────────────────────────
+// ── Dropdown (unchanged for About) ────────────────────────────────────────────
 
 function Dropdown({ label, items }: { label: string; items: DropdownItem[] }) {
   return (
     <div className="relative group">
       <div className="flex items-center cursor-pointer transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white">
-        {label} <TbChevronDown className="ml-1" />
+        {label}
       </div>
       <div className="absolute top-full left-0 hidden group-hover:block pt-2 z-[9999]">
         <div className="bg-[#031629] border border-white/10 shadow-[0_12px_40px_rgba(2,6,23,0.35)] rounded-2xl p-4 w-[320px]">
@@ -66,61 +65,7 @@ function Dropdown({ label, items }: { label: string; items: DropdownItem[] }) {
   );
 }
 
-// ── Solutions dropdown — just Applications and Features ───────────────────────
-
-function SolutionsDropdown() {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node))
-        setOpen(false);
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={() => setOpen((p) => !p)}
-        className="flex items-center cursor-pointer transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white bg-transparent border-0 p-0"
-      >
-        Solutions
-        <TbChevronDown
-          className={cn(
-            'ml-1 transition-transform duration-200',
-            open && 'rotate-180',
-          )}
-        />
-      </button>
-
-      {open && (
-        <div className="absolute top-full left-0 pt-2 z-[9999]">
-          <div className="bg-[#031629] border border-white/10 shadow-[0_12px_40px_rgba(2,6,23,0.35)] rounded-2xl p-4 w-[220px]">
-            <Link
-              href="/applications-infrastructure-intelligence"
-              onClick={() => setOpen(false)}
-              className="block p-3 rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              Applications
-            </Link>
-            <Link
-              href="/solutions-infrastructure-intelligence"
-              onClick={() => setOpen(false)}
-              className="block p-3 rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              Features
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ── Navbar (identical to original except Solutions) ───────────────────────────
+// ── Navbar ────────────────────────────────────────────────────────────────────
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -147,7 +92,8 @@ export default function Navbar() {
       )}
     >
       <nav className="relative flex items-center justify-between px-6 py-1.5 lg:px-12 max-w-[1440px] mx-auto">
-        {/* Logo — unchanged */}
+        
+        {/* Logo */}
         <Link href="/" className="flex items-center">
           <div className="w-28 h-14 md:w-36 md:h-16 flex items-center justify-center overflow-hidden">
             <Image
@@ -161,8 +107,9 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
+          
           <Link
             href="/"
             className="transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white"
@@ -170,7 +117,19 @@ export default function Navbar() {
             Home
           </Link>
 
-          <SolutionsDropdown />
+          <Link
+            href="/solutions-infrastructure-intelligence"
+            className="transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white"
+          >
+            Solutions
+          </Link>
+
+          <Link
+            href="/applications-infrastructure-intelligence"
+            className="transition-colors text-base tracking-[0.02em] text-white/78 hover:text-white"
+          >
+            Case Studies
+          </Link>
 
           {navItems
             .filter((item) => item.label !== 'Home')
@@ -202,7 +161,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile Toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-white"
@@ -210,9 +169,10 @@ export default function Navbar() {
           {menuOpen ? <RiCloseFill size={24} /> : <TbMenu size={28} />}
         </button>
 
-        {/* Mobile menu */}
+        {/* Mobile Menu */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-[#031629] border-t border-white/10 rounded-b-3xl p-4 md:hidden z-[9998] shadow-[0_12px_40px_rgba(2,6,23,0.35)]">
+            
             <Link
               href="/"
               className="block py-2.5 text-white/80"
@@ -221,24 +181,21 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Solutions — simple two items */}
-            <div className="mb-1">
-              <div className="text-white py-2.5">Solutions</div>
-              <Link
-                href="/sectors"
-                className="block py-1.5 pl-3 text-white/65"
-                onClick={() => setMenuOpen(false)}
-              >
-                Applications
-              </Link>
-              <Link
-                href="/solutions-infrastructure-intelligence"
-                className="block py-1.5 pl-3 text-white/65"
-                onClick={() => setMenuOpen(false)}
-              >
-                Features
-              </Link>
-            </div>
+            <Link
+              href="/solutions-infrastructure-intelligence"
+              className="block py-2.5 text-white/80"
+              onClick={() => setMenuOpen(false)}
+            >
+              Solutions
+            </Link>
+
+            <Link
+              href="/applications-infrastructure-intelligence"
+              className="block py-2.5 text-white/80"
+              onClick={() => setMenuOpen(false)}
+            >
+              Case Studies
+            </Link>
 
             {navItems
               .filter((item) => item.label !== 'Home')

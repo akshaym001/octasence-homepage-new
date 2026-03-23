@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import mainConfig from '@/configs/mainConfigs';
+import PitchDeckDownload from '@/components/layouts/PitchDeckDownload';
 
 type Founder = {
   name: string;
@@ -24,7 +25,7 @@ const FOUNDERS: Founder[] = [
     role: 'Co-Founder & CTO',
     tagline:
       'Twenty years shipping agentic platforms—from PropTech to SHM—for mission-critical systems.',
-    imageSrc: '/assets/images/WhatsApp Image 2026-03-13 at 17.11.13.jpeg',
+    imageSrc: '/assets/images/WhatsApp Image 2026-03-23 at 17.20.20.jpeg',
   },
   {
     name: 'Wolfgang Staufer',
@@ -151,6 +152,8 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      <PitchDeckDownload href="/assets/OctaSence_Investor_Deck_2026.pdf" />
+
       <section
         className={`${mainConfig.containerClass} px-4 py-16 md:py-24 space-y-12`}
       >
@@ -250,6 +253,8 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      
 
       <section className="border-t border-white/5 bg-gradient-to-b from-indigo-950/35 to-[#070b1a] py-16 md:py-24">
         <div

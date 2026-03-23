@@ -90,7 +90,7 @@ const VideoPanel: React.FC = () => (
       </div>
 
       <p className="text-white/80 text-sm font-medium">
-        E:{' '}
+        You can also contact us by email to:{' '}
         <a
           href="mailto:admin@octasence.com"
           className="text-blue-300 hover:text-blue-200 transition-colors underline font-semibold"

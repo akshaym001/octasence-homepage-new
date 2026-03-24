@@ -82,7 +82,7 @@ const HeroSection: React.FC = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           {/* Explore Platform Button */}
-          <Link href="/products" className="group">
+          <Link href="/products-infrastructure-intelligence" className="group">
             <motion.button
               onHoverStart={() => setIsHovered('explore')}
               onHoverEnd={() => setIsHovered(null)}

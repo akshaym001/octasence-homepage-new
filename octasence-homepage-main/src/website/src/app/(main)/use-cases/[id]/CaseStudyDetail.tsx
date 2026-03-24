@@ -1,6 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FiMessageSquare } from 'react-icons/fi';
 
 import { CaseStudy } from '../data/caseStudies';
 
@@ -52,6 +55,7 @@ function SectionBlock({ title, content }: { title: string; content: string }) {
 
 export default function CaseStudyDetail({ cs }: { cs: CaseStudy }) {
   const [visible, setVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -736,6 +740,79 @@ export default function CaseStudyDetail({ cs }: { cs: CaseStudy }) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Enquiry FAB */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 40,
+          right: 40,
+          zIndex: 100,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.9 }}
+              style={{
+                background: 'rgba(15, 23, 42, 0.95)',
+                border: '1px solid var(--accent-blue)',
+                padding: '6px 14px',
+                borderRadius: 20,
+                fontSize: 12,
+                fontWeight: 600,
+                color: 'var(--accent-blue)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+                whiteSpace: 'nowrap',
+                fontFamily: 'var(--font-display)',
+                position: 'absolute',
+                bottom: '100%',
+                marginBottom: 16,
+                backdropFilter: 'blur(8px)',
+                pointerEvents: 'none',
+              }}
+            >
+              For Enquiry
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <Link href="/contact" style={{ display: 'block' }}>
+          <motion.div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: '50%',
+              background: 'var(--accent-blue)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              position: 'relative',
+              boxShadow: '0 8px 32px rgba(59, 130, 246, 0.4)',
+            }}
+          >
+            {/* Waves */}
+            <div className="sonar-wave sonar-wave-1" />
+            <div className="sonar-wave sonar-wave-2" />
+
+            <FiMessageSquare 
+              size={28} 
+              color="#020617" 
+              style={{ position: 'relative', zIndex: 2 }} 
+            />
+          </motion.div>
+        </Link>
       </div>
     </main>
   );

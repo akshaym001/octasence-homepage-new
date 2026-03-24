@@ -33,6 +33,7 @@ const navItems: NavItem[] = [
       { title: 'About OctaSence', href: '/about-us' },
       { title: 'Careers', href: '/careers' },
       { title: 'Contact Us', href: '/contact' },
+      {title : 'FAQ' , href : '/faq'}
     ],
   },
 ];

@@ -34,38 +34,33 @@ const Footer = () => {
         {/* Top Section */}
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-10">
           
-          {/* Logo + Description + Social — spans 1 col */}
           <div className="flex flex-col items-center text-center space-y-6 lg:col-span-1">
-            
-            {/* Logo */}
             <Image
               src="/assets/images/logo.avif"
               alt="OctaSence logo"
               width={160}
               height={96}
-              className="h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.35)]"
+              className="h-24 w-auto object-contain"
             />
 
-            {/* Description */}
             <p className="text-white/70 font-medium text-base leading-relaxed">
               AI-Powered Infrastructure Intelligence for the world's most critical assets.
             </p>
 
-            {/* Social Icons */}
             <div className="flex space-x-4 pt-1">
-              <Link href="https://www.linkedin.com/company/octasence" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              <Link href="https://www.linkedin.com/company/octasence" target="_blank"
                 className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-4 hover:bg-white/10 hover:scale-110 transition-all">
                 <FaLinkedinIn size={28} />
               </Link>
-              <Link href="https://www.youtube.com/@octasence" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+              <Link href="https://www.youtube.com/@octasence" target="_blank"
                 className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-4 hover:bg-white/10 hover:scale-110 transition-all">
                 <FaYoutube size={28} />
               </Link>
-              <Link href="https://x.com/octasence" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+              <Link href="https://x.com/octasence" target="_blank"
                 className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-4 hover:bg-white/10 hover:scale-110 transition-all">
                 <FaXTwitter size={28} />
               </Link>
-              <Link href="https://www.instagram.com/octasence" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              <Link href="https://www.instagram.com/octasence" target="_blank"
                 className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-4 hover:bg-white/10 hover:scale-110 transition-all">
                 <FaInstagram size={28} />
               </Link>
@@ -76,10 +71,10 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-white text-xl mb-6">Platform</h3>
             <ul className="space-y-4 text-base">
-              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Smart Sensors</Link></li>
-              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">AI Platform</Link></li>
-              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Data APIs</Link></li>
-              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Digital Twin</Link></li>
+              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 hover:text-white">Smart Sensors</Link></li>
+              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 hover:text-white">AI Platform</Link></li>
+              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 hover:text-white">Data APIs</Link></li>
+              <li><Link href="/products-infrastructure-intelligence" className="text-white/85 hover:text-white">Digital Twin</Link></li>
             </ul>
           </div>
 
@@ -87,11 +82,11 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-white text-xl mb-6">Solutions</h3>
             <ul className="space-y-4 text-base">
-              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Infrastructure Intelligence</Link></li>
-              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Mining</Link></li>
-              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Tunnels & Bridges</Link></li>
-              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Dams & Reservoirs</Link></li>
-              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 font-medium hover:text-white transition-colors">Industrial IoT</Link></li>
+              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 hover:text-white">Infrastructure Intelligence</Link></li>
+              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 hover:text-white">Mining</Link></li>
+              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 hover:text-white">Tunnels & Bridges</Link></li>
+              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 hover:text-white">Dams & Reservoirs</Link></li>
+              <li><Link href="/solutions-infrastructure-intelligence" className="text-white/85 hover:text-white">Industrial IoT</Link></li>
             </ul>
           </div>
 
@@ -99,26 +94,47 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-white text-xl mb-6">About</h3>
             <ul className="space-y-4 text-base">
-              <li><Link href="/about-us" className="text-white/85 font-medium hover:text-white transition-colors">About OctaSence</Link></li>
-              <li><Link href="/careers" className="text-white/85 font-medium hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/contact" className="text-white/85 font-medium hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/about-us" className="text-white/85 hover:text-white">About OctaSence</Link></li>
+              <li><Link href="/careers" className="text-white/85 hover:text-white">Careers</Link></li>
+              <li><Link href="/contact" className="text-white/85 hover:text-white">Contact Us</Link></li>
             </ul>
           </div>
         </div>
 
+      
+
         {/* Divider */}
         <div className="relative z-10 border-t border-white/10 my-10"></div>
+        
 
-        {/* Bottom Section */}
-        <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 text-[14px] md:text-[15px]">
-          
-          <div className="flex flex-wrap gap-5 text-white/60">
-            &copy; {currentYear} OctaSence. All rights reserved.
-            <Link href="/legal/terms-of-service" className="hover:text-white transition">Terms</Link>
-            <Link href="/legal/privacy-policy" className="hover:text-white transition">Privacy</Link>
+              
+        <div className="relative z-10 flex flex-col items-center gap-4 text-center text-[14px] md:text-[15px]">
+
+          {/* Disclaimer BELOW */}
+          <p className="max-w-3xl text-white/50 text-sm leading-relaxed">
+            <span className="font-semibold text-white/70">Disclaimer:</span>{' '}
+            OctaSence strives to provide accurate and up-to-date information; however, we are not liable for any discrepancies in project details, pricing, or specifications. Users are strongly advised to verify all information through official documentation and consult directly with our team before making any investment or implementation decisions.
+          </p>
+          {/* Top Row */}
+          <div className="flex flex-wrap items-center justify-center gap-3 text-white/60">
+            
+            <span>© {currentYear} OctaSence. All rights reserved.</span>
+
+            <span className="text-white/30">|</span>
+
+            <Link href="/legal/terms-of-service" className="hover:text-white transition">
+              Terms of Service
+            </Link>
+
+            <span className="text-white/30">|</span>
+
+            <Link href="/legal/privacy-policy" className="hover:text-white transition">
+              Privacy Policy
+            </Link>
           </div>
 
-          <div className="text-white/40 text-xs md:text-sm tracking-[0.25em] uppercase">
+          {/* Tagline */}
+          <div className="text-white/40 text-xs md:text-sm tracking-[0.25em] uppercase pt-2">
             AI-Powered Infrastructure Intelligence
           </div>
         </div>
